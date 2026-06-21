@@ -3,468 +3,513 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Brigade — Luxury Private Chefs | Private Dining & Bespoke Culinary Events</title>
-  <meta name="description" content="A Michelin-trained brigade bringing fine dining to your villa or yacht. Bespoke menus, private events.">
+  <title>The Brigade — Private Chef Experience</title>
+  <meta name="theme-color" content="#0b0b0a">
 
-  <!-- Open Graph per WhatsApp e Social -->
-  <meta property="og:title" content="The Brigade — Exclusive Private Chefs">
-  <meta property="og:description" content="A Michelin-trained brigade bringing fine dining to your villa or yacht.">
-  <meta property="og:type" content="website">
-
-  <meta name="theme-color" content="#0B0B0A">
-
-  <!-- Fonts di Lusso: Fraunces (Titoli), Inter (Testo), IBM Plex Mono (Prezzi/Numeri) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600&family=Inter:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
-    /* DESIGN TOKENS DAL CODICE MAREA */
-    :root {
-      --color-ink: #0B0B0A;
-      --color-ink-soft: #181613;
-      --color-ivory: #F5F0E6;
-      --color-ivory-dim: #C9C3B6;
-      --color-brass: #B08D57; /* Oro Ottone */
-      
-      --font-display: 'Fraunces', Georgia, serif;
-      --font-body: 'Inter', sans-serif;
-      --font-mono: 'IBM Plex Mono', monospace;
-
-      --container: 1180px;
-      --space-section: clamp(3rem, 8vw, 7rem);
-      --cta-bar-height: 64px;
-    }
-
-    *, *::before, *::after { box-sizing: border-box; }
-    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
-    body, h1, h2, h3, p, ol, ul, figure { margin: 0; }
-    ol, ul { padding: 0; list-style: none; }
-    img { max-width: 100%; height: auto; display: block; }
-    a { color: inherit; text-decoration: none; }
-
     body {
-      background: var(--color-ink);
-      color: var(--color-ivory);
-      font-family: var(--font-body);
-      line-height: 1.5;
-      padding-bottom: var(--cta-bar-height);
+      margin: 0;
+      background: #0b0b0a;
+      color: #f5f0e6;
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
     }
 
-    h1, h2, h3 { font-family: var(--font-display); font-weight: 600; line-height: 1.1; }
-
-    .eyebrow {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--color-brass);
-    }
-
-    section { padding: var(--space-section) 1.25rem; border-bottom: 1px solid rgba(245,240,230,0.08); }
-    .section-heading { max-width: 640px; margin: 0 auto 2.5rem; text-align: center; }
-    .section-heading h2 { font-size: clamp(1.9rem, 5vw, 2.75rem); margin-top: 0.5rem; color: var(--color-brass); }
-    .section-intro { color: var(--color-ivory-dim); margin-top: 0.75rem; }
-
-    /* BUTTONS */
-    .btn {
-      display: inline-block;
-      padding: 0.85rem 1.75rem;
-      border-radius: 30px; /* Integrazione angoli tondi scelti da te */
-      font-size: 0.95rem;
-      letter-spacing: 0.02em;
+    h1, h2, h3 {
+      font-family: "Cormorant Garamond", serif;
       font-weight: 600;
-      text-transform: uppercase;
-      text-align: center;
-      transition: opacity 0.2s ease;
     }
-    .btn:active { opacity: 0.75; }
-    .btn-primary { background: var(--color-brass); color: var(--color-ink); }
-    .btn-ghost { border: 1px solid var(--color-ivory-dim); color: var(--color-ivory); }
 
-    /* HEADER DESKTOP */
-    .site-header {
+    .lang-header {
       position: absolute;
-      top: 0; left: 0; right: 0; z-index: 20;
-      display: flex; align-items: center; justify-content: space-between; padding: 1.25rem;
+      top: 0; left: 0; right: 0; z-index: 30;
+      display: flex; align-items: center; justify-content: flex-end; padding: 20px;
     }
-    .logo { font-family: var(--font-display); font-size: 1.3rem; letter-spacing: 0.04em; color: var(--color-ivory); font-weight: 600; }
-    .main-nav { display: none; }
+    .lang-switcher {
+      background: #151513;
+      border: 1px solid rgba(176, 141, 87, 0.4);
+      color: #f5f0e6;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      outline: none;
+      cursor: pointer;
+    }
 
-    /* HERO */
     .hero {
-      position: relative;
-      min-height: 100svh;
+      height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      background: #111;
-      padding: 0 1.25rem;
-    }
-    .hero-content { position: relative; z-index: 10; width: 100%; max-width: 800px; }
-    .hero-content h1 { font-size: clamp(2.5rem, 8vw, 4.5rem); margin-top: 0.5rem; color: var(--color-brass); }
-    .hero-subtitle { color: var(--color-ivory-dim); margin-top: 1rem; font-size: 1.2rem; }
-    .hero-content span { display: block; margin-top: 5px; color: var(--color-ivory-dim); font-style: italic; }
-    .hero-actions { margin-top: 2rem; display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; }
-
-    /* WHY SECTION */
-    .why { display: grid; gap: 2rem; max-width: var(--container); margin: 0 auto; }
-    .box { background: var(--color-ink-soft); padding: 2.5rem 1.5rem; border-radius: 15px; text-align: center; border: 1px solid rgba(176,141,87,0.1); }
-    .box h3 { font-size: 1.6rem; color: var(--color-brass); margin-bottom: 0.5rem; }
-    .box p { color: var(--color-ivory-dim); font-size: 0.95rem; }
-
-    /* PREVENTIVATORE LOGICA SCRIPT.JS INTEGRATA */
-    .simulator-card {
-      max-width: 640px; margin: 0 auto; background: var(--color-ink-soft);
-      border: 1px solid rgba(176,141,87,0.25); padding: 2rem 1.5rem; display: grid; gap: 1.75rem; border-radius: 15px;
-    }
-    .control-group { display: grid; gap: 0.5rem; }
-    .control-group label { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-brass); }
-    .guest-input { display: flex; align-items: center; gap: 1rem; }
-    .guest-input input[type="range"] { flex: 1; accent-color: var(--color-brass); }
-    #guestValue { font-family: var(--font-mono); font-size: 1.4rem; color: var(--color-ivory); min-width: 2rem; text-align: center; }
-    
-    #menu-select {
-      width: 100%; padding: 0.85rem; background: var(--color-ink);
-      border: 1px solid rgba(245,240,230,0.15); color: var(--color-ivory); font-family: var(--font-body); font-size: 1rem; border-radius: 8px;
+      background: url("assets/hero.jpg") center/cover;
+      position: relative;
     }
 
-    .checkbox-label {
-      display: flex; align-items: center; background: var(--color-ink); padding: 15px;
-      border-radius: 8px; border: 1px solid rgba(245,240,230,0.1); cursor: pointer; text-align: left;
-    }
-    .checkbox-label input { margin-right: 15px; transform: scale(1.3); accent-color: var(--color-brass); }
-
-    .simulator-result { border-top: 1px solid rgba(245,240,230,0.1); padding-top: 1.5rem; text-align: center; }
-    .simulator-price { font-family: var(--font-display); font-size: clamp(2.8rem, 9vw, 3.8rem); color: var(--color-brass); font-weight: 600; }
-    .simulator-breakdown { font-family: var(--font-mono); font-size: 0.8rem; color: var(--color-ivory-dim); margin-top: 0.25rem; }
-    .simulator-result .btn { margin-top: 1.5rem; width: 100%; border-radius: 10px; }
-
-    /* EXPERIENCES / 5 MENU DETTAGLIATI */
-    .menu-grid { display: grid; gap: 2rem; max-width: var(--container); margin: 0 auto; }
-    .menu-card { background: var(--color-ink-soft); border-radius: 12px; overflow: hidden; border: 1px solid rgba(245,240,230,0.05); }
-    .menu-card-body { padding: 2rem 1.5rem; }
-    .menu-tagline { color: var(--color-brass); font-style: italic; font-size: 0.95rem; margin-top: 0.2rem; }
-    .course-list { margin-top: 1.25rem; }
-    .course-list li { display: flex; flex-direction: column; gap: 0.2rem; padding: 0.8rem 0; border-bottom: 1px solid rgba(245,240,230,0.06); }
-    .course-type { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-brass); }
-    .course-name { font-size: 0.92rem; color: var(--color-ivory); }
-    .menu-price { font-family: var(--font-mono); margin-top: 1.5rem; color: var(--color-ivory-dim); font-size: 0.9rem; }
-    .menu-price span { color: var(--color-ivory); font-size: 1.3rem; font-weight: 600; }
-    .menu-card .btn { margin-top: 1.25rem; width: 100%; }
-    
-    .menu-card--featured { border: 1px solid rgba(176,141,87,0.5); position: relative; }
-
-    /* HOW IT WORKS */
-    .how ol { max-width: 450px; margin: 0 auto; text-align: left; }
-    .how ol li { margin-bottom: 15px; font-size: 1.1rem; color: var(--color-ivory); }
-    .how ol li::marker { color: var(--color-brass); font-family: var(--font-mono); }
-
-    /* CONTACT & FOOTER */
-    .contact { text-align: center; background: var(--color-ink-soft); }
-    .contact a { display: inline-block; background: #25D366; color: white; padding: 12px 35px; border-radius: 30px; font-weight: 600; margin-top: 15px; }
-
-    /* BARRA IN BASSO MOBILE SUL MODELLO MAREA */
-    .mobile-cta-bar {
-      position: fixed; bottom: 0; left: 0; right: 0; z-index: 30; display: flex; height: var(--cta-bar-height);
-      padding-bottom: env(safe-area-inset-bottom); background: var(--color-ink-soft); border-top: 1px solid rgba(176,141,87,0.3);
-    }
-    .mobile-cta-bar__btn { flex: 1; display: flex; align-items: center; justify-content: center; font-size: 0.95rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
-    .mobile-cta-bar__btn--call { color: var(--color-ivory); font-family: var(--font-mono); font-size: 0.85rem; }
-    .mobile-cta-bar__btn--book { background: var(--color-brass); color: var(--color-ink); }
-
-    /* RESPONSIVE TABLET & DESKTOP BREAKPOINTS */
-    @media (min-width: 768px) {
-      .why { grid-template-columns: repeat(3, 1fr); }
-      .menu-grid { grid-template-columns: repeat(2, 1fr); }
-      .menu-card--featured { grid-column: span 2; }
+    .overlay {
+      background: rgba(0,0,0,0.55);
+      padding: 40px;
+      width: 100%;
     }
 
-    @media (min-width: 1024px) {
-      body { padding-bottom: 0; }
-      .mobile-cta-bar { display: none; }
-      .site-header { padding: 1.75rem 3rem; }
-      .main-nav { display: block; }
-      .main-nav ul { display: flex; gap: 2rem; list-style: none; align-items: center; }
-      .nav-cta { background: var(--color-brass); color: var(--color-ink); padding: 0.5rem 1.5rem; border-radius: 20px; font-weight: 600; }
-      .menu-grid { grid-template-columns: repeat(3, 1fr); }
+    .kicker {
+      letter-spacing: 2px;
+      font-size: 12px;
+      opacity: 0.7;
+    }
+
+    h1 {
+      font-size: 64px;
+      margin: 10px 0;
+    }
+
+    .subtitle {
+      opacity: 0.8;
+    }
+
+    .tagline {
+      margin-top: 10px;
+      font-style: italic;
+      opacity: 0.7;
+    }
+
+    .cta {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 14px 28px;
+      background: #b08d57;
+      color: black;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+    }
+
+    .impact {
+      padding: 60px 20px;
+      text-align: center;
+      font-size: 18px;
+      opacity: 0.8;
+    }
+
+    .quote {
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .card {
+      max-width: 500px;
+      margin: auto;
+      background: #151513;
+      padding: 25px;
+      border-radius: 14px;
+    }
+
+    input, select {
+      width: 100%;
+      margin: 10px 0;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background: #0f0f0e;
+      color: white;
+      font-size: 1rem;
+      outline: none;
+    }
+
+    .checkbox-container {
+      display: flex;
+      align-items: center;
+      background: #0f0f0e;
+      padding: 12px;
+      border-radius: 8px;
+      margin: 10px 0;
+      cursor: pointer;
+      text-align: left;
+    }
+    .checkbox-container input[type="checkbox"] {
+      width: auto;
+      margin: 0 15px 0 0;
+      transform: scale(1.2);
+      accent-color: #b08d57;
+    }
+
+    .result {
+      margin: 20px 0;
+    }
+
+    .result div {
+      font-size: 42px;
+      color: #b08d57;
+      font-weight: 600;
+    }
+
+    .result p {
+      margin: 0;
+      opacity: 0.7;
+      font-size: 14px;
+    }
+
+    .btn {
+      display: block;
+      padding: 14px;
+      background: #b08d57;
+      color: black;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .experiences {
+      padding: 60px 20px;
+      text-align: center;
+    }
+    .experiences h2 {
+      font-size: 2.3rem;
+      margin-bottom: 30px;
+    }
+
+    .grid {
+      display: grid;
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .card-img {
+      background: #151513;
+      border-radius: 14px;
+      overflow: hidden;
+      padding-bottom: 20px;
+      text-align: left;
+    }
+
+    .card-img img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .card-img h3 {
+      margin: 15px 20px 5px;
+      font-size: 1.6rem;
+      color: #b08d57;
+    }
+
+    .card-img p {
+      opacity: 0.7;
+      font-size: 14px;
+      margin: 0 20px;
+    }
+
+    .luxury {
+      border: 1px solid #b08d57;
+    }
+
+    .flow {
+      padding: 60px 20px;
+      text-align: center;
+      font-style: italic;
+      opacity: 0.8;
+      background: #151513;
+    }
+    .flow h2 {
+      font-style: normal;
+      font-size: 2.3rem;
+      margin-bottom: 15px;
+    }
+
+    .contact {
+      padding: 60px 20px;
+      text-align: center;
+    }
+    .contact h2 {
+      font-size: 2.3rem;
+      margin-bottom: 15px;
+    }
+
+    .contact a {
+      display: inline-block;
+      padding: 14px 28px;
+      background: #25D366;
+      color: white;
+      border-radius: 30px;
+      text-decoration: none;
+      margin-top: 10px;
+      font-weight: 600;
+    }
+
+    @media(min-width:768px){
+      .grid { grid-template-columns: repeat(2, 1fr); }
+      .grid .luxury { grid-column: span 2; }
+      h1 { font-size: 90px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header class="site-header">
-    <a href="#" class="logo">THE BRIGADE</a>
-    <nav class="main-nav" aria-label="Primary">
-      <ul>
-        <li><a href="#quote">Get a Quote</a></li>
-        <li><a href="#experiences">Experiences</a></li>
-        <li><a href="#contact" class="nav-cta">Contact</a></li>
-      </ul>
-    </nav>
+  <header class="lang-header">
+    <select class="lang-switcher" id="lang-select" onchange="changeLanguage()">
+      <option value="en" selected>EN</option>
+      <option value="it">IT</option>
+    </select>
   </header>
 
   <!-- HERO -->
-  <section class="hero">
-    <div class="hero-content">
-      <p class="eyebrow">Private Dining · Villas &amp; Yachts</p>
-      <h1>A Michelin-Trained Brigade,<br>At Your Table.</h1>
-      <p class="hero-subtitle">Private Chef Experience</p>
-      <span>Fine dining, wherever you are.</span>
-      <div class="hero-actions">
-        <a href="#quote" class="btn btn-primary">Get Instant Quote</a>
-        <a href="#experiences" class="btn btn-ghost">Explore Experiences</a>
-      </div>
+  <header class="hero">
+    <div class="overlay">
+      <p class="kicker" id="txt-hero-kicker">PRIVATE DINING · SICILY · VILLAS & YACHTS</p>
+      <h1>THE BRIGADE</h1>
+      <p class="subtitle" id="txt-hero-sub">Private Chef Experience</p>
+      <p class="tagline" id="txt-hero-tag">Fine dining, at your residence.</p>
+      <a href="#quote" class="cta" id="txt-hero-cta">Request Private Event</a>
     </div>
+  </header>
+
+  <!-- IMPACT -->
+  <section class="impact">
+    <p id="txt-impact">Michelin-trained chefs. Private villas & yachts. Bespoke dining across Sicily.</p>
   </section>
 
-  <!-- WHY -->
-  <section class="why">
-    <div class="box">
-      <h3>Michelin-Inspired Cuisine</h3>
-      <p>Refined menus crafted with premium ingredients.</p>
-    </div>
-    <div class="box">
-      <h3>Private Luxury</h3>
-      <p>Villa, yacht and exclusive dining experiences.</p>
-    </div>
-    <div class="box">
-      <h3>Tailored Service</h3>
-      <p>Every event is fully customized.</p>
-    </div>
-  </section>
-
-  <!-- INTERACTIVE QUOTE SIMULATOR (Sotto-struttura con logiche di servizio incluse) -->
+  <!-- SIMULATOR -->
   <section id="quote" class="quote">
-    <div class="section-heading">
-      <p class="eyebrow">Il preventivatore</p>
-      <h2>Get an Instant Estimate</h2>
-      <p class="section-intro">Select guests and options — watch the price update live.</p>
-    </div>
+    <h2 id="txt-sim-title">Private Experience Estimate</h2>
 
-    <div class="simulator-card">
-      <div class="control-group">
-        <label for="guests">Number of guests</label>
-        <div class="guest-input">
-          <input type="range" id="guests" min="2" max="30" value="4">
-          <div id="guestValue">4</div>
-        </div>
-      </div>
+    <div class="card">
+      <label id="txt-label-guests">Guests attending</label>
+      <input type="range" id="guests" min="2" max="30" value="4">
+      <div id="guestValue">4</div>
 
-      <div class="control-group">
-        <label for="menu">Choose your experience</label>
-        <select id="menu">
-          <option value="95" selected>Gourmet Fish Experience — €95/guest</option>
-          <option value="85">Fine Meat Experience — €85/guest</option>
-          <option value="70">Green &amp; Earth (Vegetarian) — €70/guest</option>
-          <option value="90">Reinvented Traditions — €90/guest</option>
-          <option value="180">The Luxury Selection — €180/guest</option>
-        </select>
-      </div>
+      <label id="txt-label-experience">Culinary experience</label>
+      <select id="menu">
+        <option value="95" id="opt-m1">Gourmet Fish Journey — €95/guest</option>
+        <option value="85" id="opt-m2">Prime Meat Experience — €85/guest</option>
+        <option value="70" id="opt-m3">Green & Earth — €70/guest</option>
+        <option value="90" id="opt-m4">Reinvented Traditions — €90/guest</option>
+        <option value="180" id="opt-m5">Signature Luxury Selection — €180/guest</option>
+      </select>
 
-      <label class="checkbox-label">
+      <label class="checkbox-container">
         <input type="checkbox" id="wine">
-        <span>Wine Pairing (+35€ / guest)</span>
+        <span id="txt-chk-wine">Wine pairing (+35€/guest)</span>
       </label>
 
-      <label class="checkbox-label">
+      <label class="checkbox-container">
         <input type="checkbox" id="yacht">
-        <span>Yacht Location Service (+250€)</span>
+        <span id="txt-chk-yacht">Yacht / Villa service (+250€)</span>
       </label>
 
-      <div class="simulator-result">
-        <p class="simulator-label">Estimated Total</p>
-        <div class="simulator-price" id="total">€0</div>
-        <p class="simulator-breakdown" id="breakdown">Includes €120 brigade service fee</p>
-        
-        <a href="#" id="book" class="btn btn-primary" target="_blank">Book This Experience</a>
+      <div class="result">
+        <div id="total">€0</div>
+        <p id="txt-sim-value-label">Estimated experience value</p>
+      </div>
+
+      <a id="book" target="_blank" class="btn">Request Booking</a>
+    </div>
+  </section>
+
+  <!-- EXPERIENCES -->
+  <section class="experiences" id="experiences">
+    <h2 id="txt-exp-title">Signature Experiences</h2>
+
+    <div class="grid">
+      <div class="card-img">
+        <img src="assets/fish.jpg" alt="Fish">
+        <h3 id="m1-title">Gourmet Fish Journey</h3>
+        <p id="m1-desc">Mediterranean seafood for private dining.</p>
+      </div>
+
+      <div class="card-img">
+        <img src="assets/meat.jpg" alt="Meat">
+        <h3 id="m2-title">Prime Meat Experience</h3>
+        <p id="m2-desc">Premium cuts, slow-crafted execution.</p>
+      </div>
+
+      <div class="card-img">
+        <img src="assets/veg.jpg" alt="Veg">
+        <h3 id="m3-title">Green & Earth</h3>
+        <p id="m3-desc">Seasonal vegetarian fine dining.</p>
+      </div>
+
+      <div class="card-img">
+        <img src="assets/tradition.jpg" alt="Tradition">
+        <h3 id="m4-title">Reinvented Traditions</h3>
+        <p id="m4-desc">Sicilian heritage, modern technique.</p>
+      </div>
+
+      <div class="card-img luxury">
+        <img src="assets/luxury.jpg" alt="Luxury">
+        <h3 id="m5-title">Signature Luxury Selection</h3>
+        <p id="m5-desc">The highest expression of The Brigade.</p>
       </div>
     </div>
   </section>
 
-  <!-- OUR CULINARY EXPERIENCES (I 5 Menu Dettagliati Completi) -->
-  <section id="experiences" class="experiences">
-    <div class="section-heading">
-      <p class="eyebrow">I nostri percorsi</p>
-      <h2>Our Culinary Experiences</h2>
-    </div>
-
-    <div class="menu-grid">
-      <!-- 1. FISH -->
-      <article class="menu-card">
-        <div class="menu-card-body">
-          <h3>Gourmet Fish Experience</h3>
-          <p class="menu-tagline">"Mediterranean Summer"</p>
-          <ol class="course-list">
-            <li><span class="course-type">Amuse-Bouche</span><span class="course-name">Oyster gratinated with lemon and marjoram</span></li>
-            <li><span class="course-type">Starter</span><span class="course-name">Red prawn marinated in Sicilian citrus, avocado and basil oil</span></li>
-            <li><span class="course-type">First Course</span><span class="course-name">Artisanal paccheri with shellfish bisque and tuna bottarga</span></li>
-            <li><span class="course-type">Main Course</span><span class="course-name">Seared amberjack, smoked potato cream and fermented lemon sauce</span></li>
-            <li><span class="course-type">Dessert</span><span class="course-name">Pistachio parfait, white chocolate sauce and Mozia salt</span></li>
-          </ol>
-          <p class="menu-price">from <span>€95</span> / guest</p>
-          <a href="#quote" class="btn btn-ghost">Select Menu</a>
-        </div>
-      </article>
-
-      <!-- 2. MEAT -->
-      <article class="menu-card">
-        <div class="menu-card-body">
-          <h3>Fine Meat Experience</h3>
-          <p class="menu-tagline">"Land of Sicily"</p>
-          <ol class="course-list">
-            <li><span class="course-type">Amuse-Bouche</span><span class="course-name">Mini arancino with veal ragù and saffron</span></li>
-            <li><span class="course-type">Starter</span><span class="course-name">Beef carpaccio, aged Ragusano shavings and Nero d'Avola reduction</span></li>
-            <li><span class="course-type">First Course</span><span class="course-name">Open ravioli of braised veal cheek and thyme</span></li>
-            <li><span class="course-type">Main Course</span><span class="course-name">Slow-cooked veal fillet, Marsala demi-glace and fondant potato</span></li>
-            <li><span class="course-type">Dessert</span><span class="course-name">Warm almond tart, vanilla gelato and passito sauce</span></li>
-          </ol>
-          <p class="menu-price">from <span>€85</span> / guest</p>
-          <a href="#quote" class="btn btn-ghost">Select Menu</a>
-        </div>
-      </article>
-
-      <!-- 3. VEG -->
-      <article class="menu-card">
-        <div class="menu-card-body">
-          <h3>Green &amp; Earth</h3>
-          <p class="menu-tagline">"Contemporary Sicilian Garden"</p>
-          <ol class="course-list">
-            <li><span class="course-type">Amuse-Bouche</span><span class="course-name">Savory cannolo with sheep's ricotta and Bronte pistachio</span></li>
-            <li><span class="course-type">Starter</span><span class="course-name">Heirloom tomato tartare, stracciatella and crystallized basil</span></li>
-            <li><span class="course-type">First Course</span><span class="course-name">Stuffed "bottoni" pasta with smoked eggplant and herb butter</span></li>
-            <li><span class="course-type">Main Course</span><span class="course-name">Courgette millefoglie, Nebrodi provola and pistachio pesto</span></li>
-            <li><span class="course-type">Dessert</span><span class="course-name">Avola almond semifreddo and fig coulis</span></li>
-          </ol>
-          <p class="menu-price">from <span>€70</span> / guest</p>
-          <a href="#quote" class="btn btn-ghost">Select Menu</a>
-        </div>
-      </article>
-
-      <!-- 4. TRADITION -->
-      <article class="menu-card">
-        <div class="menu-card-body">
-          <h3>Reinvented Traditions</h3>
-          <p class="menu-tagline">"Sicilian Memories"</p>
-          <ol class="course-list">
-            <li><span class="course-type">Amuse-Bouche</span><span class="course-name">Deconstructed arancina: saffron rice cream and reduced ragù</span></li>
-            <li><span class="course-type">Starter</span><span class="course-name">Contemporary caponata with seared tuna and Modica vinegar gel</span></li>
-            <li><span class="course-type">First Course</span><span class="course-name">Reinvented baked "anelletti": single-portion timbale and tuma fondue</span></li>
-            <li><span class="course-type">Main Course</span><span class="course-name">Swordfish involtini, herb breadcrumbs and wild fennel cream</span></li>
-            <li><span class="course-type">Dessert</span><span class="course-name">Deconstructed cannolo with sheep's-milk ricotta and wafer crumble</span></li>
-          </ol>
-          <p class="menu-price">from <span>€90</span> / guest</p>
-          <a href="#quote" class="btn btn-ghost">Select Menu</a>
-        </div>
-      </article>
-
-      <!-- 5. LUXURY TIERS FEATURED -->
-      <article class="menu-card menu-card--featured">
-        <div class="menu-card-body">
-          <p class="eyebrow">The signature experience</p>
-          <h3>The Luxury Selection</h3>
-          <p class="menu-tagline">"Grand Tour of the Mediterranean"</p>
-          <ol class="course-list">
-            <li><span class="course-type">Amuse-Bouche</span><span class="course-name">Gillardeau oyster, dry cucumber granita and Oscietra caviar</span></li>
-            <li><span class="course-type">Starter</span><span class="course-name">Mazara red prawn crudo, langoustine and Oscietra caviar</span></li>
-            <li><span class="course-type">First Course</span><span class="course-name">Fresh tagliolino creamed with French butter, langoustine and caviar</span></li>
-            <li><span class="course-type">Main Course</span><span class="course-name">White grouper, champagne sauce, sea asparagus and blue lobster</span></li>
-            <li><span class="course-type">Dessert</span><span class="course-name">Valrhona chocolate sphere, Bourbon vanilla mousse and edible gold leaf</span></li>
-          </ol>
-          <p class="menu-price">from <span>€180</span> / guest</p>
-          <a href="#quote" class="btn btn-primary">Select Luxury</a>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <!-- HOW IT WORKS -->
-  <section class="how">
-    <div class="section-heading">
-      <p class="eyebrow">Come Funziona</p>
-      <h2>How It Works</h2>
-    </div>
-    <ol>
-      <li>Choose your experience and simulate your quote</li>
-      <li>Click "Book" to send us details instantly via WhatsApp</li>
-      <li>Our brigade confirms availability and finalizes requirements</li>
-      <li>We arrive at your location, cook, serve, and leave everything spotless</li>
-    </ol>
+  <!-- EXPERIENCE FLOW -->
+  <section class="flow">
+    <h2 id="txt-flow-title">The Experience</h2>
+    <p id="txt-flow-desc">We arrive. We cook. We serve. We leave everything flawless.</p>
   </section>
 
   <!-- CONTACT -->
-  <section id="contact" class="contact">
-    <div class="section-heading">
-      <p class="eyebrow">Prenotazioni</p>
-      <h2>Reserve Your Experience</h2>
-    </div>
+  <section class="contact">
+    <h2 id="txt-contact-title">Private Bookings Only</h2>
+    <a href="https://wa.me/393208966062" target="_blank" id="wa-btn">WhatsApp</a>
     <p>info@thebrigadeexperience.com</p>
-    <!-- Inserisci il tuo numero definitivo sotto al posto di 393208966062 -->
-    <a href="https://wa.me/393208966062" target="_blank" id="footer-wa">WhatsApp Direct</a>
   </section>
 
-  <footer class="site-footer">
-    <p>&copy; 2026 The Brigade — Exclusive Private Chefs. All rights reserved.</p>
-  </footer>
-
-  <!-- MOBILE FIXED FOOTER BAR -->
-  <div class="mobile-cta-bar">
-    <a href="mailto:info@thebrigadeexperience.com" class="mobile-cta-bar__btn mobile-cta-bar__btn--call">Email Us</a>
-    <a href="#quote" class="mobile-cta-bar__btn mobile-cta-bar__btn--book">Book Brigade</a>
-  </div>
-
   <script>
+    const translations = {
+      en: {
+        kicker: "PRIVATE DINING · SICILY · VILLAS & YACHTS",
+        sub: "Private Chef Experience",
+        tag: "Fine dining, at your residence.",
+        cta: "Request Private Event",
+        impact: "Michelin-trained chefs. Private villas & yachts. Bespoke dining across Sicily.",
+        simTitle: "Private Experience Estimate",
+        lblGuests: "Guests attending",
+        lblExp: "Culinary experience",
+        chkWine: "Wine pairing (+35€/guest)",
+        chkYacht: "Yacht / Villa service (+250€)",
+        simVal: "Estimated experience value",
+        btnBook: "Request Booking",
+        expTitle: "Signature Experiences",
+        flowTitle: "The Experience",
+        flowDesc: "We arrive. We cook. We serve. We leave everything flawless.",
+        contTitle: "Private Bookings Only",
+        opt1: "Gourmet Fish Journey — €95/guest",
+        opt2: "Prime Meat Experience — €85/guest",
+        opt3: "Green & Earth — €70/guest",
+        opt4: "Reinvented Traditions — €90/guest",
+        opt5: "Signature Luxury Selection — €180/guest",
+        m1T: "Gourmet Fish Journey", m1D: "Mediterranean seafood for private dining.",
+        m2T: "Prime Meat Experience", m2D: "Premium cuts, slow-crafted execution.",
+        m3T: "Green & Earth", m3D: "Seasonal vegetarian fine dining.",
+        m4T: "Reinvented Traditions", m4D: "Sicilian heritage, modern technique.",
+        m5T: "Signature Luxury Selection", m5D: "The highest expression of The Brigade.",
+        waHeader: "Private Request:"
+      },
+      it: {
+        kicker: "CENE PRIVATE · SICILIA · VILLE & YACHT",
+        sub: "Esperienza Chef Privato",
+        tag: "Alta cucina, direttamente nella tua residenza.",
+        cta: "Richiedi Evento Privato",
+        impact: "Chef stile Michelin. Ville e yacht privati. Menu su misura in tutta Sicilia.",
+        simTitle: "Previsione della Spesa",
+        lblGuests: "Ospiti presenti",
+        lblExp: "Esperienza culinaria",
+        chkWine: "Abbinamento vini (+35€/ospite)",
+        chkYacht: "Servizio Yacht / Villa (+250€)",
+        simVal: "Valore stimato dell'esperienza",
+        btnBook: "Richiedi Prenotazione",
+        expTitle: "Esperienze d'Autore",
+        flowTitle: "L'Esperienza",
+        flowDesc: "Arriviamo. Cuciniamo. Serviamo. Lasciamo tutto impeccabile.",
+        contTitle: "Solo Prenotazioni Private",
+        opt1: "Gourmet Fish Journey — €95/ospite",
+        opt2: "Prime Meat Experience — €85/ospite",
+        opt3: "Green & Earth — €70/ospite",
+        opt4: "Tradizioni Rivisitate — €90/ospite",
+        opt5: "Signature Luxury Selection — €180/ospite",
+        m1T: "Gourmet Fish Journey", m1D: "Pesce fresco del Mediterraneo per cene private.",
+        m2T: "Prime Meat Experience", m2D: "Tagli premium, esecuzioni a cottura lenta.",
+        m3T: "Green & Earth", m3D: "Alta cucina vegetariana e stagionale.",
+        m4T: "Tradizioni Rivisitate", m4D: "Identità siciliana, tecniche moderne.",
+        m5T: "Signature Luxury Selection", m5D: "La massima espressione di The Brigade.",
+        waHeader: "Richiesta Privata:"
+      }
+    };
+
+    const menuKeys = {
+      95: { en: "Gourmet Fish Journey", it: "Gourmet Fish Journey" },
+      85: { en: "Prime Meat Experience", it: "Prime Meat Experience" },
+      70: { en: "Green & Earth", it: "Green & Earth" },
+      90: { en: "Reinvented Traditions", it: "Tradizioni Rivisitate" },
+      180: { en: "Signature Luxury Selection", it: "Signature Luxury Selection" }
+    };
+
+    function changeLanguage() {
+      const lang = document.getElementById("lang-select").value;
+      const t = translations[lang];
+
+      document.getElementById("txt-hero-kicker").innerText = t.kicker;
+      document.getElementById("txt-hero-sub").innerText = t.sub;
+      document.getElementById("txt-hero-tag").innerText = t.tag;
+      document.getElementById("txt-hero-cta").innerText = t.cta;
+      document.getElementById("txt-impact").innerText = t.impact;
+      document.getElementById("txt-sim-title").innerText = t.simTitle;
+      document.getElementById("txt-label-guests").innerText = t.lblGuests;
+      document.getElementById("txt-label-experience").innerText = t.lblExp;
+      document.getElementById("txt-chk-wine").innerText = t.chkWine;
+      document.getElementById("txt-chk-yacht").innerText = t.chkYacht;
+      document.getElementById("txt-sim-value-label").innerText = t.simVal;
+      document.querySelector(".btn").innerText = t.btnBook;
+      document.getElementById("txt-exp-title").innerText = t.expTitle;
+      document.getElementById("txt-flow-title").innerText = t.flowTitle;
+      document.getElementById("txt-flow-desc").innerText = t.flowDesc;
+      document.getElementById("txt-contact-title").innerText = t.contTitle;
+
+      document.getElementById("opt-m1").innerText = t.opt1;
+      document.getElementById("opt-m2").innerText = t.opt2;
+      document.getElementById("opt-m3").innerText = t.opt3;
+      document.getElementById("opt-m4").innerText = t.opt4;
+      document.getElementById("opt-m5").innerText = t.opt5;
+
+      document.getElementById("m1-title").innerText = t.m1T; document.getElementById("m1-desc").innerText = t.m1D;
+      document.getElementById("m2-title").innerText = t.m2T; document.getElementById("m2-desc").innerText = t.m2D;
+      document.getElementById("m3-title").innerText = t.m3T; document.getElementById("m3-desc").innerText = t.m3D;
+      document.getElementById("m4-title").innerText = t.m4T; document.getElementById("m4-desc").innerText = t.m4D;
+      document.getElementById("m5-title").innerText = t.m5T; document.getElementById("m5-desc").innerText = t.m5D;
+
+      calc();
+    }
+
+    // LOGICA DI CALCOLO PULITA (INTEGRAZIONE COMPLETA DEL TUO CODICE SNELLO)
     const guests = document.getElementById("guests");
     const menu = document.getElementById("menu");
     const wine = document.getElementById("wine");
     const yacht = document.getElementById("yacht");
-
     const totalEl = document.getElementById("total");
     const guestValue = document.getElementById("guestValue");
     const book = document.getElementById("book");
 
-    // Quota fissa inserita dal tuo script.js
     const serviceFee = 120;
 
-    function calculate(){
-      let g = Number(guests.value);
-      let price = Number(menu.value);
+    function calc(){
+      let g = +guests.value;
+      let price = +menu.value;
+      let lang = document.getElementById("lang-select").value;
 
-      // Logica del calcolo esatta del tuo script
       let total = g * price + serviceFee;
 
-      if(wine.checked){
-        total += g * 35;
-      }
-
-      if(yacht.checked){
-        total += 250;
-      }
+      if(wine.checked) total += g * 35;
+      if(yacht.checked) total += 250;
 
       guestValue.innerText = g;
-      totalEl.innerText = '€' + total;
+      totalEl.innerText = "€" + total;
 
-      const menuName = menu.options[menu.selectedIndex].text.split(' — ')[0];
+      const finalMenuName = menuKeys[price][lang];
+      const headerText = translations[lang].waHeader;
 
-      // Formato del messaggio del tuo script.js
-      const message = `Hi The Brigade,\nGuests: ${g}\nMenu: ${menuName}\nWine: ${wine.checked ? "Yes" : "No"}\nYacht: ${yacht.checked ? "Yes" : "No"}\nTotal: €${total}`;
+      const msg = `${headerText}\nGuests: ${g}\nExperience: ${finalMenuName}\nWine: ${wine.checked ? "Yes" : "No"}\nYacht: ${yacht.checked ? "Yes" : "No"}\nTotal: €${total}`;
 
-      // Tuo numero reale integrato nel codice
-      const realPhone = "393208966062";
-      
-      book.href = "https://wa.me/" + realPhone + "?text=" + encodeURIComponent(message);
-      document.getElementById('footer-wa').href = "https://wa.me/" + realPhone;
+      book.href = "https://wa.me/393208966062?text=" + encodeURIComponent(msg);
     }
 
-    guests.oninput = calculate;
-    menu.onchange = calculate;
-    wine.onchange = calculate;
-    yacht.onchange = calculate;
+    guests.oninput = calc;
+    menu.onchange = calc;
+    wine.onchange = calc;
+    yacht.onchange = calc;
 
-    // Avvio calcolo istantaneo
-    calculate();
+    calc();
   </script>
 </body>
 </html>
