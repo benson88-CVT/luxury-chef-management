@@ -20,14 +20,14 @@ jobs:
       env:
         TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
         TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-      run: |
-        # Legge il corpo della Issue. Cerca una riga con scritto "Ospiti: X" e estrae il numero
-        OSPITI=$(echo "${{ github.event.issue.body }}" | grep -i "Ospiti:" | awk '{print $2}' | tr -d '\r')
+      run: |     
+       # Estrae il numero degli ospiti eliminando spazi o caratteri strani
+        OSPITI=$(echo "${{ github.event.issue.body }}" | grep -i "Ospiti:" | awk '{print $2}' | tr -d '\r' | tr -cd '0-9')
         
-        # Cerca una riga con scritto "Menu: X" e estrae il nome del file (es: menu-pesce)
-        MENU=$(echo "${{ github.event.issue.body }}" | grep -i "Menu:" | awk '{print $2}' | tr -d '\r')
+        # Estrae il nome del menu e sostituisce i trattini bassi (_) con quelli normali (-) per sicurezza
+        MENU=$(echo "${{ github.event.issue.body }}" | grep -i "Menu:" | awk '{print $2}' | tr -d '\r' | tr '_' '-')
         
-        # Se non trova i dati nella Issue, usa quelli di default (10 ospiti, menu-pesce)
+        # Valori di backup se la Issue è vuota o scritta male
         if [ -z "$OSPITI" ]; then OSPITI=10; fi
         if [ -z "$MENU" ]; then MENU="menu-pesce"; fi
         
