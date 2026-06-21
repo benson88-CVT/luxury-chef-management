@@ -46,15 +46,8 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      background: url("../assets/hero.jpg") center/cover;
+      background: url("../assets/hero.jpg.jpeg") center/cover;
       position: relative;
-    }
-
-    /* Fallback automatico se l'estensione è .jpeg */
-    @property --hero-url {
-      syntax: '<image>';
-      inherits: false;
-      initial-value: url("../assets/hero.jpg");
     }
 
     .overlay {
@@ -270,7 +263,7 @@
     </select>
   </header>
 
-  <header class="hero" id="hero-section">
+  <header class="hero">
     <div class="overlay">
       <p class="kicker" id="txt-hero-kicker">PRIVATE DINING · SICILY · VILLAS & YACHTS</p>
       <h1>THE BRIGADE</h1>
@@ -325,31 +318,31 @@
 
     <div class="grid">
       <div class="card-img">
-        <img src="../assets/fish.jpg" alt="Fish" onerror="this.src='../assets/fish.jpeg'">
+        <img src="../assets/fish.jpg.jpeg" alt="Fish">
         <h3 id="m1-title">Gourmet Fish Journey</h3>
         <p id="m1-desc">Mediterranean seafood for private dining.</p>
       </div>
 
       <div class="card-img">
-        <img src="../assets/meat.jpg" alt="Meat" onerror="this.src='../assets/meat.jpeg'">
+        <img src="../assets/meat.jpg.jpeg" alt="Meat">
         <h3 id="m2-title">Prime Meat Experience</h3>
         <p id="m2-desc">Premium cuts, slow-crafted execution.</p>
       </div>
 
       <div class="card-img">
-        <img src="../assets/veg.jpg" alt="Veg" onerror="this.src='../assets/veg.jpeg'">
+        <img src="../assets/veg.jpg.jpeg" alt="Veg">
         <h3 id="m3-title">Green & Earth</h3>
         <p id="m3-desc">Seasonal vegetarian fine dining.</p>
       </div>
 
       <div class="card-img">
-        <img src="../assets/tradition.jpg" alt="Tradition" onerror="this.src='../assets/tradition.jpeg'">
+        <img src="../assets/tradition.jpg.jpeg" alt="Tradition">
         <h3 id="m4-title">Reinvented Traditions</h3>
         <p id="m4-desc">Sicilian heritage, modern technique.</p>
       </div>
 
       <div class="card-img luxury">
-        <img src="../assets/luxury.jpg" alt="Luxury" onerror="this.src='../assets/luxury.jpeg'">
+        <img src="../assets/luxury.jpg.jpeg" alt="Luxury">
         <h3 id="m5-title">Signature Luxury Selection</h3>
         <p id="m5-desc">The highest expression of The Brigade.</p>
       </div>
@@ -503,14 +496,6 @@
 
       book.href = "https://wa.me/393208966062?text=" + encodeURIComponent(msg);
     }
-
-    // Controllo speciale per l'immagine hero di sfondo se caricata come .jpeg
-    const heroSec = document.getElementById("hero-section");
-    const imgTest = new Image();
-    imgTest.src = "../assets/hero.jpg";
-    imgTest.onerror = function() {
-      heroSec.style.background = "url('../assets/hero.jpeg') center/cover";
-    };
 
     guests.oninput = calc;
     menu.onchange = calc;
