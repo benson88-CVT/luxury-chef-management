@@ -1,0 +1,10 @@
+{
+  "nome_menu": "Menu Mare Gourmet",
+  "food_cost_per_pax": 25,
+  "scaglioni_personale": [
+    {"fino_a": 6, "cuochi_extra": 0},
+    {"fino_a": 12, "cuochi_extra": 1},
+    {"fino_a": 18, "cuochi_extra": 2},
+    {"fino_a": 99, "cuochi_extra": 3}
+  ]
+}
