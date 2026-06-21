@@ -4,20 +4,18 @@ import urllib.request
 import urllib.parse
 
 def invia_telegram(testo):
-    # Recupera i dati sensibili salvati nei GitHub Secrets
     token = os.environ.get('TELEGRAM_TOKEN')
     chat_id = os.environ.get('TELEGRAM_CHAT_ID')
     
     if not token or not chat_id:
-        print("⚠️ Errore: Credenziali Telegram non trovate nei Secrets.")
+        print("⚠️ Errore: Credenziali Telegram non trouvate nei Secrets.")
         return
 
-    # Prepara la richiesta per l'API di Telegram
     url = f"https://api.telegram.org/bot{token}/sendMessage"
     payload = {
         'chat_id': chat_id,
         'text': testo,
-        'parse_mode': 'Markdown'
+        'parse_mode': 'HTML'  # Passiamo a HTML che è molto più stabile
     }
     
     data = urllib.parse.urlencode(payload).encode('utf-8')
@@ -53,27 +51,25 @@ def calcola(ospiti, tipo_menu):
     prezzo_pulito = costi_vivi_totali + config['guadagno_minimo_gestore']
     prezzo_cliente_finale = prezzo_pulito * config['moltiplicatore_tasse']
     
-    # Prepariamo il testo formattato elegante da mandare sul telefono
+    # Testo pulito in HTML - Impossibile da rompere per Telegram
     messaggio = (
-        f"📊 *NUOVO PREVENTIVO GENERATO*\n"
-        f"🍽️ *Menu:* {menu['nome_menu']}\n"
-        f"👥 *Ospiti:* {ospiti}\n"
-        f"‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾\n"
-        f"💰 *Materie Prime:* {costo_cibo}€\n"
-        f"👨‍🍳 *Cuochi Extra:* {cuochi_extra} ({costo_personale}€)\n"
-        f"📉 *Costi Vivi Totali:* {costi_vivi_totali}€\n"
-        f"📈 *Tuo Guadagno Netto:* {config['guadagno_minimo_gestore']}€\n"
-        f"_____________________________\n"
-        f"🚀 *PREZZO FINALE CLIENTE:* *{round(prezzo_cliente_finale, 2)}€*\n"
-        f"💵 *Quota a persona:* {round(prezzo_cliente_finale / ospiti, 2)}€"
+        f"<b>📊 NUOVO PREVENTIVO GENERATO</b>\n"
+        f"🍽 <b>Menu:</b> {menu['nome_menu']}\n"
+        f"👥 <b>Ospiti:</b> {ospiti}\n"
+        f"-----------------------------\n"
+        f"💰 <b>Materie Prime:</b> {costo_cibo}€\n"
+        f"👨‍🍳 <b>Cuochi Extra:</b> {cuochi_extra} ({costo_personale}€)\n"
+        f"📉 <b>Costi Vivi Totali:</b> {costi_vivi_totali}€\n"
+        f"📈 <b>Tuo Guadagno Netto:</b> {config['guadagno_minimo_gestore']}€\n"
+        f"-----------------------------\n"
+        f"🚀 <b>PREZZO FINALE CLIENTE:</b> <b>{round(prezzo_cliente_finale, 2)}€</b>\n"
+        f"💵 <b>Quota a persona:</b> {round(prezzo_cliente_finale / ospiti, 2)}€"
     )
     
-    # Stampa sul terminale di GitHub e invia sullo smartphone
     print(messaggio)
     invia_telegram(messaggio)
 
 if __name__ == "__main__":
-    # Prendiamo i dati passati da GitHub Actions o usiamo il test standard
     import sys
     ospiti_input = int(sys.argv[1]) if len(sys.argv) > 1 else 10
     menu_input = sys.argv[2] if len(sys.argv) > 2 else "menu-pesce"
