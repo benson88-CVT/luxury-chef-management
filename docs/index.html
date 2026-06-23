@@ -309,20 +309,42 @@
     .gallery-cell:hover img { transform: scale(1.05); filter: brightness(1) saturate(1); }
 
     /* OCCASIONS */
+    #occasions {
+      position: relative;
+      /* Usa la hero o cambiala con un'altra foto d'atmosfera */
+      background: url("assets/hero.jpeg") center/cover fixed;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 100px 40px;
+    }
+    #occasions::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(11, 11, 10, 0.88); /* Velo scuro per far brillare il testo */
+      z-index: 1;
+    }
+    #occasions .max-w { position: relative; z-index: 2; }
+
     .occasions-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1px;
-      background: var(--border);
+      background: rgba(176,141,87,0.1);
       border: 1px solid var(--border);
     }
     .occasion-item {
-      background: var(--ink-2);
-      padding: 40px 30px;
-      transition: background 0.3s;
+      background: rgba(11, 11, 10, 0.6); /* Effetto vetro fumé */
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      padding: 50px 30px;
+      transition: background 0.4s, transform 0.4s;
     }
-    .occasion-item:hover { background: var(--ink-3); }
-    .occasion-icon { font-size: 1.2rem; margin-bottom: 16px; color: var(--gold); opacity: 0.6; }
+    .occasion-item:hover { 
+      background: rgba(11, 11, 10, 0.95); 
+      transform: translateY(-5px); /* Si alza leggermente al passaggio del mouse */
+    }
+    .occasion-icon { font-size: 1.2rem; margin-bottom: 16px; color: var(--gold); opacity: 0.8; }
     .occasion-item h3 { font-size: 1.15rem; font-weight: 400; margin-bottom: 10px; }
     .occasion-item p { font-size: 0.8rem; color: var(--muted); line-height: 1.7; }
 
