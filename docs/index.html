@@ -3,527 +3,1040 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Brigade — Private Chef Experience</title>
+  <title>The Brigade — Private Chef Experience · Sicily</title>
+  <meta name="description" content="Private fine dining experiences across Sicily. Exclusive chef service in villas, yachts and luxury residences. Tailor-made menus, complete service.">
   <meta name="theme-color" content="#0b0b0a">
+  <meta property="og:title" content="The Brigade — Private Chef Experience · Sicily">
+  <meta property="og:description" content="Exclusive private dining in villas and yachts across Sicily.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #b08d57;
+      --gold-light: #d4af37;
+      --ink: #0b0b0a;
+      --ink-2: #111110;
+      --ink-3: #151513;
+      --cream: #f5f0e6;
+      --muted: rgba(245,240,230,0.55);
+      --border: rgba(176,141,87,0.2);
+      --border-strong: rgba(176,141,87,0.5);
+    }
+
+    html { scroll-behavior: smooth; }
+
     body {
-      margin: 0;
-      background: #0b0b0a;
-      color: #f5f0e6;
+      background: var(--ink);
+      color: var(--cream);
       font-family: 'Inter', sans-serif;
-      line-height: 1.6;
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
     }
 
-    h1, h2, h3 {
-      font-family: "Cormorant Garamond", serif;
-      font-weight: 600;
-    }
+    h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; }
 
-    .lang-header {
-      position: absolute;
-      top: 0; left: 0; right: 0; z-index: 30;
-      display: flex; align-items: center; justify-content: flex-end; padding: 20px;
+    /* NAVBAR */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 40px;
+      transition: background 0.4s, padding 0.4s;
     }
+    nav.scrolled {
+      background: rgba(11,11,10,0.92);
+      backdrop-filter: blur(12px);
+      padding: 12px 40px;
+      border-bottom: 1px solid var(--border);
+    }
+    .logo {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-decoration: none;
+      gap: 3px;
+    }
+    .logo-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: 1.25rem;
+      letter-spacing: 0.35em;
+      color: var(--cream);
+      text-transform: uppercase;
+    }
+    .logo-line {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+    }
+    .logo-sub {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.25em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+    .nav-right { display: flex; align-items: center; gap: 30px; }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a {
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
     .lang-switcher {
-      background: #151513;
-      border: 1px solid rgba(176, 141, 87, 0.4);
-      color: #f5f0e6;
-      padding: 6px 14px;
+      background: transparent;
+      border: 1px solid var(--border-strong);
+      color: var(--cream);
+      padding: 5px 12px;
       border-radius: 20px;
-      font-size: 0.8rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
       outline: none;
       cursor: pointer;
+      font-family: 'Inter', sans-serif;
     }
+    .lang-switcher option { background: var(--ink-2); }
 
+    /* HERO */
     .hero {
       height: 100vh;
+      min-height: 600px;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      background: url("assets/hero.jpeg") center/cover;
+      background: url("assets/hero.jpeg") center/cover no-repeat;
       position: relative;
     }
-
-    .overlay {
-      background: rgba(0,0,0,0.55);
-      padding: 40px;
-      width: 100%;
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(11,11,10,0.3) 0%, rgba(11,11,10,0.6) 60%, rgba(11,11,10,0.95) 100%);
     }
-
+    .hero-content { position: relative; z-index: 2; padding: 20px; max-width: 800px; }
     .kicker {
-      letter-spacing: 2px;
-      font-size: 12px;
-      opacity: 0.7;
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+      display: block;
     }
-
     h1 {
-      font-size: clamp(3.5rem, 8vw, 6rem);
-      margin: 10px 0;
+      font-size: clamp(4rem, 9vw, 7rem);
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      line-height: 1;
+      margin-bottom: 16px;
     }
-
-    .subtitle {
-      font-size: clamp(1.2rem, 3vw, 1.8rem);
-      opacity: 0.8;
+    .hero-sub {
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
       font-style: italic;
+      font-weight: 300;
+      color: var(--muted);
+      margin-bottom: 12px;
+      font-family: 'Cormorant Garamond', serif;
     }
-
-    .tagline {
-      margin-top: 15px;
-      font-size: 1.1rem;
-      opacity: 0.8;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
+    .hero-tag {
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      max-width: 480px;
+      margin: 0 auto 36px;
+      font-weight: 300;
     }
-
     .cta {
       display: inline-block;
-      margin-top: 30px;
-      padding: 16px 32px;
-      background: #b08d57;
-      color: black;
-      border-radius: 30px;
+      padding: 15px 40px;
+      border: 1px solid var(--gold);
+      color: var(--gold);
       text-decoration: none;
-      font-weight: 600;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      font-size: 0.9rem;
-      letter-spacing: 1px;
-      transition: background 0.3s;
+      transition: background 0.3s, color 0.3s;
+      font-family: 'Inter', sans-serif;
     }
-    .cta:hover { background: #d4af37; }
+    .cta:hover { background: var(--gold); color: var(--ink); }
 
-    .trust {
-      padding: 80px 20px;
-      text-align: center;
-      background: #111;
-      border-bottom: 1px solid rgba(176,141,87,.2);
+    /* SHARED */
+    section { padding: 100px 40px; }
+    .section-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+      display: block;
     }
-    .trust h2 {
-      font-size: 2.5rem;
-      margin-bottom: 40px;
-      color: #b08d57;
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 300;
+      line-height: 1.2;
+      margin-bottom: 50px;
+    }
+    .centered { text-align: center; }
+    .max-w { max-width: 1100px; margin: 0 auto; }
+
+    /* TRUST */
+    .trust {
+      background: var(--ink-2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 80px 40px;
+      text-align: center;
     }
     .trust-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 25px;
-      max-width: 1000px;
-      margin: auto;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      max-width: 900px;
+      margin: 0 auto;
+      background: var(--border);
+      border: 1px solid var(--border);
     }
-    .trust-card {
-      background: #151513;
-      padding: 30px 20px;
-      border-radius: 14px;
-      border: 1px solid rgba(176,141,87,.1);
-    }
-    .trust-card h3 {
-      color: #b08d57;
+    .trust-item { background: var(--ink-2); padding: 40px 30px; }
+    .trust-item h3 {
+      font-size: 1.1rem;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      color: var(--gold);
       margin-bottom: 10px;
-      font-size: 1.3rem;
     }
-    .trust-card p { opacity: 0.8; font-size: 0.95rem; margin: 0; }
+    .trust-item p { font-size: 0.82rem; color: var(--muted); line-height: 1.7; }
 
-    .impact { padding: 60px 20px; text-align: center; font-size: 18px; opacity: 0.8; }
-
-    .quote { padding: 80px 20px; text-align: center; }
-    .quote h2 { font-size: 2.5rem; margin-bottom: 40px; }
-    
-    .card {
-      max-width: 550px;
-      margin: auto;
-      background: #151513;
-      padding: 35px 25px;
-      border-radius: 14px;
-      border: 1px solid rgba(176,141,87,.2);
-    }
-    
-    .card label { display: block; text-align: left; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: #a0a0a0; margin-top: 15px; }
-
-    input, select {
-      width: 100%;
-      margin: 10px 0;
-      padding: 15px;
-      border: 1px solid #333;
-      border-radius: 8px;
-      background: #0f0f0e;
-      color: white;
-      font-size: 1rem;
-      outline: none;
-    }
-
-    .checkbox-container {
+    /* BRIGADE */
+    .brigade-inner {
       display: flex;
       align-items: center;
-      background: #0f0f0e;
-      padding: 15px;
-      border: 1px solid #333;
-      border-radius: 8px;
-      margin: 15px 0;
-      cursor: pointer;
-      text-align: left;
+      gap: 80px;
+      max-width: 1100px;
+      margin: 0 auto;
     }
-    .checkbox-container input[type="checkbox"] { width: auto; margin: 0 15px 0 0; transform: scale(1.3); accent-color: #b08d57; }
-
-    .result {
+    .brigade-image {
+      flex: 0 0 420px;
+      height: 560px;
+      position: relative;
+      overflow: hidden;
+      background: var(--ink-3);
+    }
+    .brigade-image img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(15%); }
+    .brigade-image::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 1px solid var(--border);
+      pointer-events: none;
+    }
+    .brigade-text { flex: 1; }
+    .brigade-text p { font-size: 0.9rem; color: var(--muted); line-height: 1.9; margin-bottom: 20px; }
+    .brigade-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-style: italic;
+      color: var(--cream);
+      line-height: 1.5;
+      border-left: 1px solid var(--gold);
+      padding-left: 24px;
       margin: 30px 0;
+    }
+
+    /* EXPERIENCES */
+    .exp-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2px;
+      background: var(--border);
+    }
+    .exp-card { position: relative; overflow: hidden; height: 380px; background: var(--ink-3); }
+    .exp-card.wide { grid-column: span 2; height: 460px; }
+    .exp-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s ease; filter: brightness(0.7); }
+    .exp-card:hover img { transform: scale(1.04); }
+    .exp-card-label {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 30px;
+      background: linear-gradient(to top, rgba(11,11,10,0.9) 0%, transparent 100%);
+    }
+    .exp-tag {
+      display: inline-block;
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid var(--border-strong);
+      padding: 3px 10px;
+      margin-bottom: 12px;
+    }
+    .exp-card-label h3 { font-size: 1.5rem; font-weight: 400; color: var(--cream); margin-bottom: 4px; }
+    .exp-card-label p { font-size: 0.78rem; color: var(--muted); letter-spacing: 0.05em; }
+
+    /* GALLERY */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: 260px 260px;
+      gap: 2px;
+      background: var(--border);
+    }
+    .gallery-cell { overflow: hidden; position: relative; background: var(--ink-3); }
+    .gallery-cell:first-child { grid-row: span 2; }
+    .gallery-cell img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.6s ease, filter 0.4s;
+      filter: brightness(0.85) saturate(0.9);
+    }
+    .gallery-cell:hover img { transform: scale(1.05); filter: brightness(1) saturate(1); }
+
+    /* OCCASIONS */
+    .occasions-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+    .occasion-item {
+      background: var(--ink-2);
+      padding: 40px 30px;
+      transition: background 0.3s;
+    }
+    .occasion-item:hover { background: var(--ink-3); }
+    .occasion-icon { font-size: 1.2rem; margin-bottom: 16px; color: var(--gold); opacity: 0.6; }
+    .occasion-item h3 { font-size: 1.15rem; font-weight: 400; margin-bottom: 10px; }
+    .occasion-item p { font-size: 0.8rem; color: var(--muted); line-height: 1.7; }
+
+    /* FLOW */
+    .flow-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border: 1px solid var(--border);
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .flow-step {
+      padding: 40px 30px;
+      border-right: 1px solid var(--border);
+    }
+    .flow-step:last-child { border-right: none; }
+    .flow-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      font-weight: 300;
+      color: var(--border-strong);
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+    .flow-step h3 {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+      font-family: 'Inter', sans-serif;
+    }
+    .flow-step p { font-size: 0.82rem; color: var(--muted); line-height: 1.7; }
+
+    /* FORM */
+    .form-wrap { max-width: 560px; margin: 0 auto; }
+    .form-field { margin-bottom: 20px; }
+    .form-field label {
+      display: block;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+    .form-field input,
+    .form-field select {
+      width: 100%;
+      padding: 14px 16px;
+      background: var(--ink);
+      border: 1px solid rgba(176,141,87,0.25);
+      color: var(--cream);
+      font-size: 0.9rem;
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      outline: none;
+      transition: border-color 0.2s;
+      appearance: none;
+      border-radius: 0;
+    }
+    .form-field input:focus,
+    .form-field select:focus { border-color: var(--gold); }
+    .form-field select option { background: var(--ink-2); }
+    .guest-row { display: flex; align-items: center; gap: 16px; }
+    .guest-row input[type="range"] {
+      flex: 1; accent-color: var(--gold);
+      padding: 0; border: none; background: transparent; cursor: pointer;
+    }
+    .guest-count {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 300;
+      color: var(--gold);
+      min-width: 40px;
+      text-align: right;
+    }
+    .check-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 16px;
+      background: var(--ink);
+      border: 1px solid rgba(176,141,87,0.15);
+      cursor: pointer;
+      transition: border-color 0.2s;
+      margin-bottom: 12px;
+    }
+    .check-row:hover { border-color: var(--gold); }
+    .check-row input[type="checkbox"] { width: auto; accent-color: var(--gold); transform: scale(1.2); cursor: pointer; }
+    .check-row span { font-size: 0.82rem; color: var(--muted); }
+    .form-note {
       padding: 20px;
-      background: #0b0b0a;
-      border-radius: 10px;
-      border: 1px dashed #b08d57;
+      border: 1px solid var(--border);
+      margin: 24px 0;
+      text-align: center;
     }
-    #total { font-size: 1.8rem; color: #b08d57; font-family: "Cormorant Garamond", serif; font-weight: 600; letter-spacing: 1px; }
-    .result p { margin-top: 5px; opacity: 0.7; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; }
-
-    .btn { display: block; padding: 16px; background: #b08d57; color: black; text-decoration: none; border-radius: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; transition: opacity 0.2s; }
-    .btn:hover { opacity: 0.9; }
-
-    .experiences { padding: 80px 20px; text-align: center; }
-    .experiences h2 { font-size: 2.5rem; margin-bottom: 40px; }
-
-    .grid { display: grid; gap: 30px; max-width: 1000px; margin: 0 auto; }
-    .card-img { background: #151513; border-radius: 14px; overflow: hidden; padding-bottom: 20px; text-align: left; border: 1px solid rgba(255,255,255,.05); }
-    .card-img img { width: 100%; height: 250px; object-fit: cover; }
-    .card-img h3 { margin: 20px 20px 5px; font-size: 1.6rem; color: #b08d57; }
-    .card-img p { opacity: 0.8; font-size: 0.95rem; margin: 0 20px; }
-    .luxury { border: 1px solid #b08d57; }
-
-    .flow { padding: 80px 20px; text-align: center; background: #111; border-top: 1px solid rgba(176,141,87,.2); border-bottom: 1px solid rgba(176,141,87,.2); }
-    .flow h2 { font-size: 2.5rem; margin-bottom: 30px; color: #b08d57; }
-    .flow p { font-size: 1.2rem; margin: 15px 0; font-family: "Cormorant Garamond", serif; color: #f5f0e6; letter-spacing: 1px; }
-    .flow p::first-line { font-family: 'Inter', sans-serif; font-size: 0.8rem; color: #b08d57; font-weight: bold; }
-
-    .brands {
-      display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; padding: 40px 20px;
-      border-bottom: 1px solid rgba(176,141,87,.2); font-size: .85rem; font-weight: 600; letter-spacing: 2px; opacity: .6;
+    .form-note p { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.05em; }
+    .btn-send {
+      display: block;
+      width: 100%;
+      padding: 16px;
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      text-decoration: none;
+      text-align: center;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-family: 'Inter', sans-serif;
+      transition: background 0.3s, color 0.3s;
     }
+    .btn-send:hover { background: var(--gold); color: var(--ink); }
 
-    .testimonials { padding: 80px 20px; text-align: center; }
-    .testimonials h2 { font-size: 2.5rem; margin-bottom: 40px; }
-    .testimonial { max-width: 700px; margin: 30px auto; background: #151513; padding: 35px 25px; border-radius: 14px; border: 1px solid rgba(176,141,87,.1); }
-    .testimonial p { font-size: 1.1rem; font-style: italic; margin: 15px 0; line-height: 1.6; }
-    .testimonial span { display: block; margin-top: 15px; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: #b08d57; }
-    .stars { color: #b08d57; font-size: 1.2rem; letter-spacing: 2px; }
+    /* TESTIMONIALS */
+    .test-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .test-item { background: var(--ink); padding: 40px 30px; }
+    .stars { color: var(--gold); font-size: 0.8rem; letter-spacing: 4px; margin-bottom: 20px; }
+    .test-item p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      font-style: italic;
+      font-weight: 300;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+    .test-item span { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); }
 
-    .contact { padding: 80px 20px; text-align: center; background: #111; }
-    .contact h2 { font-size: 2.5rem; margin-bottom: 20px; }
-    .contact a { display: inline-block; padding: 16px 35px; background: #25D366; color: white; border-radius: 30px; text-decoration: none; margin-top: 10px; font-weight: 600; letter-spacing: 1px; }
-    .contact p { margin-top: 20px; color: #a0a0a0; }
+    /* CONTACT */
+    .contact-sub {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 40px;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .wa-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px 40px;
+      background: transparent;
+      border: 1px solid #25D366;
+      color: #25D366;
+      text-decoration: none;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      transition: background 0.3s, color 0.3s;
+    }
+    .wa-btn:hover { background: #25D366; color: var(--ink); }
+    .contact-email { display: block; margin-top: 20px; font-size: 0.78rem; color: var(--muted); }
 
-    @media(min-width:768px){
-      .grid { grid-template-columns: repeat(2, 1fr); }
-      .grid .luxury { grid-column: span 2; }
+    /* FOOTER */
+    footer {
+      background: var(--ink);
+      border-top: 1px solid var(--border);
+      padding: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    footer p { font-size: 0.65rem; color: rgba(245,240,230,0.3); letter-spacing: 0.1em; }
+    .footer-links { display: flex; gap: 24px; list-style: none; }
+    .footer-links a {
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(245,240,230,0.3);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--gold); }
+
+    /* REVEAL */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      nav { padding: 16px 20px; }
+      nav.scrolled { padding: 10px 20px; }
+      .nav-links { display: none; }
+      section { padding: 70px 20px; }
+      .brigade-inner { flex-direction: column; gap: 40px; }
+      .brigade-image { flex: none; width: 100%; height: 360px; }
+      .trust-grid { grid-template-columns: 1fr; }
+      .occasions-grid { grid-template-columns: 1fr 1fr; }
+      .exp-grid { grid-template-columns: 1fr; }
+      .exp-card.wide { grid-column: span 1; height: 300px; }
+      .exp-card { height: 280px; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: repeat(3, 200px); }
+      .gallery-cell:first-child { grid-row: span 1; }
+      .flow-steps { grid-template-columns: 1fr 1fr; }
+      .flow-step { border-bottom: 1px solid var(--border); }
+      .test-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; text-align: center; }
+    }
+    @media (max-width: 600px) {
+      .occasions-grid { grid-template-columns: 1fr; }
+      .flow-steps { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr; grid-template-rows: repeat(5, 200px); }
     }
   </style>
 </head>
 <body>
 
-  <header class="lang-header">
-    <select class="lang-switcher" id="lang-select" onchange="changeLanguage()">
-      <option value="en" selected>EN</option>
-      <option value="it">IT</option>
-    </select>
-  </header>
-
-  <header class="hero">
-    <div class="overlay">
-      <p class="kicker" id="txt-hero-kicker">PRIVATE DINING · SICILY · VILLAS & YACHTS</p>
-      <h1>THE BRIGADE</h1>
-      <p class="subtitle" id="txt-hero-sub">Private Fine Dining Across Sicily</p>
-      <p class="tagline" id="txt-hero-tag">Tailor-made culinary experiences in villas, yachts and exclusive residences.</p>
-      <a href="#quote" class="cta" id="txt-hero-cta">Request Private Event</a>
-    </div>
-  </header>
-
-  <section class="trust">
-    <h2 id="txt-trust-title">Why The Brigade</h2>
-    <div class="trust-grid">
-      <div class="trust-card">
-        <h3 id="txt-t1-title">Private Villas & Yachts</h3>
-        <p id="txt-t1-desc">Exclusive dining experiences throughout Sicily.</p>
-      </div>
-      <div class="trust-card">
-        <h3 id="txt-t2-title">Seasonal Ingredients</h3>
-        <p id="txt-t2-desc">Local sourcing and menus designed around the season.</p>
-      </div>
-      <div class="trust-card">
-        <h3 id="txt-t3-title">Complete Service</h3>
-        <p id="txt-t3-desc">Cooking, service and kitchen reset included.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="quote" class="quote">
-    <h2 id="txt-sim-title">Request Tailored Proposal</h2>
-
-    <div class="card">
-      <label id="txt-label-guests">Guests attending</label>
-      <input type="range" id="guests" min="2" max="30" value="4">
-      <div id="guestValue">4</div>
-
-      <label id="txt-label-experience">Select Experience</label>
-      <select id="menu">
-        <option value="1" id="opt-m1">Gourmet Fish Journey</option>
-        <option value="2" id="opt-m2">Prime Meat Experience</option>
-        <option value="3" id="opt-m3">Green & Earth</option>
-        <option value="4" id="opt-m4">Reinvented Traditions</option>
-        <option value="5" id="opt-m5">Signature Luxury Selection</option>
+  <!-- NAVBAR -->
+  <nav id="navbar">
+    <a href="#" class="logo">
+      <span class="logo-text">The Brigade</span>
+      <div class="logo-line"></div>
+      <span class="logo-sub">Private Chef · Sicily</span>
+    </a>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="#brigade" id="nav-brigade">The Brigade</a></li>
+        <li><a href="#experiences" id="nav-exp">Experiences</a></li>
+        <li><a href="#occasions" id="nav-occ">Occasions</a></li>
+        <li><a href="#quote" id="nav-quote">Request</a></li>
+      </ul>
+      <select class="lang-switcher" id="lang-select" onchange="changeLanguage()">
+        <option value="en" selected>EN</option>
+        <option value="it">IT</option>
       </select>
-
-      <label class="checkbox-container">
-        <input type="checkbox" id="wine">
-        <span id="txt-chk-wine">Include Wine Pairing</span>
-      </label>
-
-      <label class="checkbox-container">
-        <input type="checkbox" id="yacht">
-        <span id="txt-chk-yacht">Villa / Yacht Location Service</span>
-      </label>
-
-      <div class="result">
-        <div id="total" style="font-size:1.5rem;" id="txt-tailored">Tailored Proposal</div>
-        <p id="txt-sim-value-label">Receive your personalized quotation within 24 hours.</p>
-      </div>
-
-      <a id="book" target="_blank" class="btn" id="txt-btn-book">Send Request</a>
     </div>
-  </section>
+  </nav>
 
-  <section class="experiences" id="experiences">
-    <h2 id="txt-exp-title">Signature Experiences</h2>
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-content">
+      <span class="kicker" id="txt-kicker">PRIVATE DINING · SICILY · VILLAS & YACHTS</span>
+      <h1>THE BRIGADE</h1>
+      <p class="hero-sub" id="txt-sub">Private Fine Dining Across Sicily</p>
+      <p class="hero-tag" id="txt-tag">Tailor-made culinary experiences in villas, yachts and exclusive residences.</p>
+      <a href="#quote" class="cta" id="txt-cta">Request Private Event</a>
+    </div>
+  </header>
 
-    <div class="grid">
-      <div class="card-img">
-        <img src="assets/fish.jpeg" alt="Fish">
-        <h3 id="m1-title">Gourmet Fish Journey</h3>
-        <p id="m1-desc">Mediterranean seafood for private dining.</p>
+  <!-- TRUST -->
+  <section class="trust">
+    <div class="trust-grid reveal">
+      <div class="trust-item">
+        <h3 id="txt-t1h">Villas & Yachts</h3>
+        <p id="txt-t1p">Exclusive dining experiences throughout Sicily, wherever you choose to be.</p>
       </div>
-      <div class="card-img">
-        <img src="assets/meat.jpeg" alt="Meat">
-        <h3 id="m2-title">Prime Meat Experience</h3>
-        <p id="m2-desc">Premium cuts, slow-crafted execution.</p>
+      <div class="trust-item">
+        <h3 id="txt-t2h">Seasonal Sourcing</h3>
+        <p id="txt-t2p">Menus built around what the island offers at its best. Nothing imported that can be found here.</p>
       </div>
-      <div class="card-img">
-        <img src="assets/veg.jpeg" alt="Veg">
-        <h3 id="m3-title">Green & Earth</h3>
-        <p id="m3-desc">Seasonal vegetarian fine dining.</p>
-      </div>
-      <div class="card-img">
-        <img src="assets/tradition.jpeg" alt="Tradition">
-        <h3 id="m4-title">Reinvented Traditions</h3>
-        <p id="m4-desc">Sicilian heritage, modern technique.</p>
-      </div>
-      <div class="card-img luxury">
-        <img src="assets/luxury.jpeg" alt="Luxury">
-        <h3 id="m5-title">Signature Luxury Selection</h3>
-        <p id="m5-desc">The highest expression of The Brigade.</p>
+      <div class="trust-item">
+        <h3 id="txt-t3h">Complete Service</h3>
+        <p id="txt-t3p">Arrival, setup, cooking, service and full kitchen reset — all included.</p>
       </div>
     </div>
   </section>
 
-  <section class="flow">
-    <h2 id="txt-flow-title">The Experience</h2>
-    <p><span id="txt-f1">01 INQUIRY</span><br>Initial consultation to understand your desires.</p>
-    <p><span id="txt-f2">02 MENU DESIGN</span><br>Crafting your bespoke dining proposal.</p>
-    <p><span id="txt-f3">03 PRIVATE EVENT</span><br>Flawless execution at your residence.</p>
-    <p><span id="txt-f4">04 COMPLETE RESET</span><br>We leave everything perfect and spotless.</p>
-  </section>
-
-  <section class="brands">
-    <div>PRIVATE EVENTS</div>
-    <div>VILLAS</div>
-    <div>YACHTS</div>
-    <div>LUXURY RETREATS</div>
-  </section>
-
-  <section class="testimonials">
-    <h2 id="txt-test-title">What Our Guests Say</h2>
-    
-    <div class="testimonial">
-      <div class="stars">★★★★★</div>
-      <p id="txt-r1">"An unforgettable evening. Restaurant-level cuisine in the comfort of our villa."</p>
-      <span id="txt-a1">— Private Guest, Taormina</span>
-    </div>
-
-    <div class="testimonial">
-      <div class="stars">★★★★★</div>
-      <p id="txt-r2">"Flawless execution from start to finish. The kitchen was cleaner than before they arrived."</p>
-      <span id="txt-a2">— Private Guest, Noto</span>
-    </div>
-
-    <div class="testimonial">
-      <div class="stars">★★★★★</div>
-      <p id="txt-r3">"The highlight of our Sicilian holiday."</p>
-      <span id="txt-a3">— Private Guest, Cefalù</span>
+  <!-- BRIGADE -->
+  <section id="brigade">
+    <div class="brigade-inner">
+      <div class="brigade-image reveal">
+        <img src="assets/chef.jpeg" alt="The Brigade" onerror="this.style.display='none'">
+      </div>
+      <div class="brigade-text reveal">
+        <span class="section-label" id="txt-bl">The Brigade</span>
+        <h2 class="section-title" id="txt-bh">Craftsmanship earned<br>over decades at the table.</h2>
+        <p id="txt-bp1">Behind every dinner we host is a team forged through years of professional kitchens — from intimate tasting menus to large-scale luxury events. Our formation spans the breadth of Italian culinary tradition, with a constant eye on what grows, swims, and breathes in Sicily.</p>
+        <div class="brigade-quote" id="txt-bq">"We don't adapt to the occasion. We build the occasion around what we know."</div>
+        <p id="txt-bp2">Each event is planned and executed with the same discipline we brought to every professional kitchen we have worked in — complete discretion, precise timing, and a standard that does not change based on the setting.</p>
+      </div>
     </div>
   </section>
 
-  <section class="contact">
-    <h2 id="txt-contact-title">Private Bookings Only</h2>
-    <a href="https://wa.me/393208966062" target="_blank" id="wa-btn">WhatsApp</a>
-    <p>thebrigadeexperience@gmail.com</p>
+  <!-- EXPERIENCES -->
+  <section id="experiences" style="background: var(--ink-2); padding: 100px 0;">
+    <div style="padding: 0 40px; margin-bottom: 50px; text-align: center;">
+      <span class="section-label" id="txt-expl">Signature Experiences</span>
+      <h2 class="section-title" id="txt-exph">Five expressions.<br>One standard.</h2>
+    </div>
+    <div class="exp-grid reveal">
+      <div class="exp-card">
+        <img src="assets/fish.jpeg" alt="" onerror="this.style.display='none'">
+        <div class="exp-card-label">
+          <span class="exp-tag" id="txt-m1tag">Mediterranean</span>
+          <h3 id="txt-m1h">Gourmet Fish Journey</h3>
+          <p id="txt-m1p">The catch of the day, elevated — raw, cured, cooked over fire.</p>
+        </div>
+      </div>
+      <div class="exp-card">
+        <img src="assets/meat.jpeg" alt="" onerror="this.style.display='none'">
+        <div class="exp-card-label">
+          <span class="exp-tag" id="txt-m2tag">Prime Cuts</span>
+          <h3 id="txt-m2h">Prime Meat Experience</h3>
+          <p id="txt-m2p">Selected breeds, slow technique, precision at every degree.</p>
+        </div>
+      </div>
+      <div class="exp-card">
+        <img src="assets/veg.jpeg" alt="" onerror="this.style.display='none'">
+        <div class="exp-card-label">
+          <span class="exp-tag" id="txt-m3tag">Vegetarian</span>
+          <h3 id="txt-m3h">Green & Earth</h3>
+          <p id="txt-m3p">A full sensory menu without a single compromise.</p>
+        </div>
+      </div>
+      <div class="exp-card">
+        <img src="assets/tradition.jpeg" alt="" onerror="this.style.display='none'">
+        <div class="exp-card-label">
+          <span class="exp-tag" id="txt-m4tag">Sicilian Heritage</span>
+          <h3 id="txt-m4h">Reinvented Traditions</h3>
+          <p id="txt-m4p">Dishes your grandparents would recognise. Techniques they would not.</p>
+        </div>
+      </div>
+      <div class="exp-card wide">
+        <img src="assets/luxury.jpeg" alt="" onerror="this.style.display='none'">
+        <div class="exp-card-label">
+          <span class="exp-tag" id="txt-m5tag">Signature · The Brigade</span>
+          <h3 id="txt-m5h">Signature Luxury Selection</h3>
+          <p id="txt-m5p">No constraints. No category. The highest expression of what this team can offer.</p>
+        </div>
+      </div>
+    </div>
   </section>
+
+  <!-- GALLERY -->
+  <section style="background: var(--ink-2); padding: 100px 40px; border-top: 1px solid var(--border);">
+    <div class="max-w">
+      <div style="text-align: center; margin-bottom: 50px;">
+        <span class="section-label" id="txt-gall">Gallery</span>
+        <h2 class="section-title" id="txt-galh">Every detail,<br>every table.</h2>
+      </div>
+      <div class="gallery-grid reveal">
+        <div class="gallery-cell">
+          <img src="assets/gallery-1.jpeg" alt="" onerror="this.style.display='none'">
+        </div>
+        <div class="gallery-cell">
+          <img src="assets/gallery-2.jpeg" alt="" onerror="this.style.display='none'">
+        </div>
+        <div class="gallery-cell">
+          <img src="assets/gallery-3.jpeg" alt="" onerror="this.style.display='none'">
+        </div>
+        <div class="gallery-cell">
+          <img src="assets/gallery-4.jpeg" alt="" onerror="this.style.display='none'">
+        </div>
+        <div class="gallery-cell">
+          <img src="assets/gallery-5.jpeg" alt="" onerror="this.style.display='none'">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OCCASIONS -->
+  <section id="occasions" style="background: var(--ink); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+    <div class="max-w centered">
+      <span class="section-label" id="txt-occl">Occasions</span>
+      <h2 class="section-title" id="txt-occh">Every moment deserves<br>a private table.</h2>
+      <div class="occasions-grid reveal">
+        <div class="occasion-item">
+          <div class="occasion-icon">◇</div>
+          <h3 id="txt-occ1h">Private Dinner</h3>
+          <p id="txt-occ1p">An intimate evening for family, friends, or a circle you choose — entirely yours.</p>
+        </div>
+        <div class="occasion-item">
+          <div class="occasion-icon">◇</div>
+          <h3 id="txt-occ2h">Wedding & Celebrations</h3>
+          <p id="txt-occ2p">From the rehearsal dinner to the wedding feast — a culinary experience as memorable as the day itself.</p>
+        </div>
+        <div class="occasion-item">
+          <div class="occasion-icon">◇</div>
+          <h3 id="txt-occ3h">Corporate Events</h3>
+          <p id="txt-occ3p">Client dinners, team gatherings and exclusive business hospitality at a level that communicates intent.</p>
+        </div>
+        <div class="occasion-item">
+          <div class="occasion-icon">◇</div>
+          <h3 id="txt-occ4h">Birthday & Milestones</h3>
+          <p id="txt-occ4p">Mark a significant moment with a table built entirely around the person at the centre of it.</p>
+        </div>
+        <div class="occasion-item">
+          <div class="occasion-icon">◇</div>
+          <h3 id="txt-occ5h">Yacht & Villa Retreats</h3>
+          <p id="txt-occ5p">Sailing the Sicilian coast or based in a private residence — the kitchen travels with you.</p>
+        </div>
+        <div class="occasion-item">
+          <div class="occasion-icon">◇</div>
+          <h3 id="txt-occ6h">Multi-Day Residencies</h3>
+          <p id="txt-occ6p">Extended stays with a dedicated team for the full duration of your time on the island.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FLOW -->
+  <section style="background: var(--ink-2); padding: 100px 40px;">
+    <div class="max-w centered">
+      <span class="section-label" id="txt-flowl">The Process</span>
+      <h2 class="section-title" id="txt-flowh">From first contact<br>to last course.</h2>
+      <div class="flow-steps reveal">
+        <div class="flow-step">
+          <div class="flow-num">01</div>
+          <h3 id="txt-f1h">Inquiry</h3>
+          <p id="txt-f1p">You reach out. We listen. An initial conversation to understand who you are and what you want from the evening.</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">02</div>
+          <h3 id="txt-f2h">Menu Design</h3>
+          <p id="txt-f2p">We propose a bespoke menu built for your group, your occasion, and what Sicily offers that week.</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">03</div>
+          <h3 id="txt-f3h">Private Event</h3>
+          <p id="txt-f3p">The Brigade arrives, sets up, and executes without friction. Your only role is to enjoy.</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">04</div>
+          <h3 id="txt-f4h">Complete Reset</h3>
+          <p id="txt-f4p">We leave the space exactly as we found it. Often cleaner. Always with discretion.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REQUEST FORM -->
+  <section id="quote" style="background: var(--ink); border-top: 1px solid var(--border);">
+    <div class="max-w centered">
+      <span class="section-label" id="txt-forml">Request</span>
+      <h2 class="section-title" id="txt-formh">Tell us about your evening.</h2>
+      <div class="form-wrap">
+        <div class="form-field">
+          <label id="txt-lg">Guests attending</label>
+          <div class="guest-row">
+            <input type="range" id="guests" min="2" max="30" value="8">
+            <span class="guest-count" id="guestVal">8</span>
+          </div>
+        </div>
+        <div class="form-field">
+          <label id="txt-ldate">Preferred date</label>
+          <input type="text" id="eventDate" placeholder="e.g. 14 August 2025">
+        </div>
+        <div class="form-field">
+          <label id="txt-lexp">Experience</label>
+          <select id="menu">
+            <option value="1" id="opt1">Gourmet Fish Journey</option>
+            <option value="2" id="opt2">Prime Meat Experience</option>
+            <option value="3" id="opt3">Green & Earth</option>
+            <option value="4" id="opt4">Reinvented Traditions</option>
+            <option value="5" id="opt5">Signature Luxury Selection</option>
+          </select>
+        </div>
+        <label class="check-row">
+          <input type="checkbox" id="wine">
+          <span id="txt-wine">Wine pairing</span>
+        </label>
+        <label class="check-row">
+          <input type="checkbox" id="yacht">
+          <span id="txt-yacht">Villa / Yacht location service</span>
+        </label>
+        <div class="form-note">
+          <p id="txt-fnote">We will send a tailored proposal within 24 hours via WhatsApp.</p>
+        </div>
+        <a id="btn-send" target="_blank" class="btn-send">Send Request via WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section style="background: var(--ink-2); padding: 100px 40px; border-top: 1px solid var(--border);">
+    <div class="max-w centered">
+      <span class="section-label" id="txt-testl">Testimonials</span>
+      <h2 class="section-title" id="txt-testh">What our guests remember.</h2>
+      <div class="test-grid reveal">
+        <div class="test-item">
+          <div class="stars">★★★★★</div>
+          <p id="txt-r1">"An unforgettable evening. Restaurant-level cuisine in the comfort of our villa."</p>
+          <span id="txt-a1">— Private Guest, Taormina</span>
+        </div>
+        <div class="test-item">
+          <div class="stars">★★★★★</div>
+          <p id="txt-r2">"Flawless execution from start to finish. The kitchen was cleaner than before they arrived."</p>
+          <span id="txt-a2">— Private Guest, Noto</span>
+        </div>
+        <div class="test-item">
+          <div class="stars">★★★★★</div>
+          <p id="txt-r3">"The highlight of our Sicilian holiday."</p>
+          <span id="txt-a3">— Private Guest, Cefalù</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section style="background: var(--ink); border-top: 1px solid var(--border); text-align: center;">
+    <span class="section-label" id="txt-contl">Contact</span>
+    <h2 class="section-title" id="txt-conth">Private bookings only.</h2>
+    <p class="contact-sub" id="txt-contsub">All inquiries handled personally. We do not use booking platforms.</p>
+    <a href="https://wa.me/393208966062" target="_blank" class="wa-btn">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+        <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.552 4.116 1.523 5.845L.057 23.428a.5.5 0 0 0 .515.57l5.74-1.505A11.946 11.946 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.808 9.808 0 0 1-5.001-1.367l-.36-.213-3.408.893.91-3.32-.234-.374A9.796 9.796 0 0 1 2.182 12C2.182 6.57 6.57 2.182 12 2.182c5.43 0 9.818 4.388 9.818 9.818 0 5.43-4.388 9.818-9.818 9.818z"/>
+      </svg>
+      WhatsApp
+    </a>
+    <a href="mailto:thebrigadeexperience@gmail.com" class="contact-email">thebrigadeexperience@gmail.com</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p id="txt-foot">© 2025 The Brigade · Sicily, Italy · Private dining exclusively</p>
+    <ul class="footer-links">
+      <li><a href="#brigade" id="ftr-brigade">The Brigade</a></li>
+      <li><a href="#experiences" id="ftr-exp">Experiences</a></li>
+      <li><a href="#quote" id="ftr-req">Request</a></li>
+    </ul>
+  </footer>
 
   <script>
+    /* NAVBAR SCROLL */
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    /* SCROLL REVEAL */
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    revealEls.forEach(el => observer.observe(el));
+
+    /* FORM */
+    const guestSlider = document.getElementById('guests');
+    const guestVal = document.getElementById('guestVal');
+    const menuSel = document.getElementById('menu');
+    const wineChk = document.getElementById('wine');
+    const yachtChk = document.getElementById('yacht');
+    const dateInput = document.getElementById('eventDate');
+    const btnSend = document.getElementById('btn-send');
+
+    function buildWALink() {
+      const lang = document.getElementById('lang-select').value;
+      const t = translations[lang];
+      const g = guestSlider.value;
+      const exp = menuSel.options[menuSel.selectedIndex].text;
+      const date = dateInput.value || '—';
+      const wine = wineChk.checked ? (lang === 'it' ? 'Sì' : 'Yes') : 'No';
+      const yacht = yachtChk.checked ? (lang === 'it' ? 'Sì' : 'Yes') : 'No';
+      const msg = `${t.waHeader}\n\n${t.waGuests}: ${g}\n${t.waDate}: ${date}\n${t.waExp}: ${exp}\n${t.waWine}: ${wine}\n${t.waYacht}: ${yacht}\n\n${t.waClosing}`;
+      btnSend.href = 'https://wa.me/393208966062?text=' + encodeURIComponent(msg);
+    }
+
+    guestSlider.oninput = () => { guestVal.textContent = guestSlider.value; buildWALink(); };
+    menuSel.onchange = buildWALink;
+    wineChk.onchange = buildWALink;
+    yachtChk.onchange = buildWALink;
+    dateInput.oninput = buildWALink;
+
+    /* TRANSLATIONS */
     const translations = {
       en: {
-        kicker: "PRIVATE DINING · SICILY · VILLAS & YACHTS",
-        sub: "Private Fine Dining Across Sicily",
-        tag: "Tailor-made culinary experiences in villas, yachts and exclusive residences.",
-        cta: "Request Private Event",
-        trustTitle: "Why The Brigade",
-        t1T: "Private Villas & Yachts", t1D: "Exclusive dining experiences throughout Sicily.",
-        t2T: "Seasonal Ingredients", t2D: "Local sourcing and menus designed around the season.",
-        t3T: "Complete Service", t3D: "Cooking, service and kitchen reset included.",
-        simTitle: "Request Tailored Proposal",
-        lblGuests: "Guests attending",
-        lblExp: "Select Experience",
-        chkWine: "Include Wine Pairing",
-        chkYacht: "Villa / Yacht Location Service",
-        tailored: "Tailored Proposal",
-        simVal: "Receive your personalized quotation within 24 hours.",
-        btnBook: "Send Request",
-        expTitle: "Signature Experiences",
-        flowTitle: "The Experience",
-        f1: "01 INQUIRY", f2: "02 MENU DESIGN", f3: "03 PRIVATE EVENT", f4: "04 COMPLETE RESET",
-        testTitle: "What Our Guests Say",
-        r1: '"An unforgettable evening. Restaurant-level cuisine in the comfort of our villa."',
-        a1: "— Private Guest, Taormina",
-        r2: '"Flawless execution from start to finish. The kitchen was cleaner than before they arrived."',
-        a2: "— Private Guest, Noto",
-        r3: '"The highlight of our Sicilian holiday."',
-        a3: "— Private Guest, Cefalù",
-        contTitle: "Private Bookings Only",
-        opt1: "Gourmet Fish Journey", opt2: "Prime Meat Experience", opt3: "Green & Earth", opt4: "Reinvented Traditions", opt5: "Signature Luxury Selection",
-        m1T: "Gourmet Fish Journey", m1D: "Mediterranean seafood for private dining.",
-        m2T: "Prime Meat Experience", m2D: "Premium cuts, slow-crafted execution.",
-        m3T: "Green & Earth", m3D: "Seasonal vegetarian fine dining.",
-        m4T: "Reinvented Traditions", m4D: "Sicilian heritage, modern technique.",
-        m5T: "Signature Luxury Selection", m5D: "The highest expression of The Brigade.",
-        waHeader: "Private Request:"
+        waHeader: 'Private Event Request — The Brigade',
+        waGuests: 'Guests', waDate: 'Preferred date', waExp: 'Experience',
+        waWine: 'Wine pairing', waYacht: 'Villa / Yacht',
+        waClosing: 'Please send me a tailored proposal.',
+        kicker: 'PRIVATE DINING · SICILY · VILLAS & YACHTS',
+        sub: 'Private Fine Dining Across Sicily',
+        tag: 'Tailor-made culinary experiences in villas, yachts and exclusive residences.',
+        cta: 'Request Private Event',
+        t1h: 'Villas & Yachts', t1p: 'Exclusive dining experiences throughout Sicily, wherever you choose to be.',
+        t2h: 'Seasonal Sourcing', t2p: 'Menus built around what the island offers at its best. Nothing imported that can be found here.',
+        t3h: 'Complete Service', t3p: 'Arrival, setup, cooking, service and full kitchen reset — all included.',
+        bl: 'The Brigade',
+        bh: 'Craftsmanship earned\nover decades at the table.',
+        bp1: 'Behind every dinner we host is a team forged through years of professional kitchens — from intimate tasting menus to large-scale luxury events. Our formation spans the breadth of Italian culinary tradition, with a constant eye on what grows, swims, and breathes in Sicily.',
+        bq: '"We don\'t adapt to the occasion. We build the occasion around what we know."',
+        bp2: 'Each event is planned and executed with the same discipline we brought to every professional kitchen we have worked in — complete discretion, precise timing, and a standard that does not change based on the setting.',
+        expl: 'Signature Experiences', exph: 'Five expressions.\nOne standard.',
+        m1tag: 'Mediterranean', m1h: 'Gourmet Fish Journey', m1p: 'The catch of the day, elevated — raw, cured, cooked over fire.',
+        m2tag: 'Prime Cuts', m2h: 'Prime Meat Experience', m2p: 'Selected breeds, slow technique, precision at every degree.',
+        m3tag: 'Vegetarian', m3h: 'Green & Earth', m3p: 'A full sensory menu without a single compromise.',
+        m4tag: 'Sicilian Heritage', m4h: 'Reinvented Traditions', m4p: 'Dishes your grandparents would recognise. Techniques they would not.',
+        m5tag: 'Signature · The Brigade', m5h: 'Signature Luxury Selection', m5p: 'No constraints. No category. The highest expression of what this team can offer.',
+        gall: 'Gallery', galh: 'Every detail,\nevery table.',
+        occl: 'Occasions', occh: 'Every moment deserves\na private table.',
+        occ1h: 'Private Dinner', occ1p: 'An intimate evening for family, friends, or a circle you choose — entirely yours.',
+        occ2h: 'Wedding & Celebrations', occ2p: 'From the rehearsal dinner to the wedding feast — a culinary experience as memorable as the day itself.',
+        occ3h: 'Corporate Events', occ3p: 'Client dinners, team gatherings and exclusive business hospitality at a level that communicates intent.',
+        occ4h: 'Birthday & Milestones', occ4p: 'Mark a significant moment with a table built entirely around the person at the centre of it.',
+        occ5h: 'Yacht & Villa Retreats', occ5p: 'Sailing the Sicilian coast or based in a private residence — the kitchen travels with you.',
+        occ6h: 'Multi-Day Residencies', occ6p: 'Extended stays with a dedicated team for the full duration of your time on the island.',
+        flowl: 'The Process', flowh: 'From first contact\nto last course.',
+        f1h: 'Inquiry', f1p: 'You reach out. We listen. An initial conversation to understand who you are and what you want from the evening.',
+        f2h: 'Menu Design', f2p: 'We propose a bespoke menu built for your group, your occasion, and what Sicily offers that week.',
+        f3h: 'Private Event', f3p: 'The Brigade arrives, sets up, and executes without friction. Your only role is to enjoy.',
+        f4h: 'Complete Reset', f4p: 'We leave the space exactly as we found it. Often cleaner. Always with discretion.',
+        forml: 'Request', formh: 'Tell us about your evening.',
+        lg: 'Guests attending', ldate: 'Preferred date', lexp: 'Experience',
+        wine: 'Wine pairing', yacht: 'Villa / Yacht location service',
+        fnote: 'We will send a tailored proposal within 24 hours via WhatsApp.',
+        fbtn: 'Send Request via WhatsApp',
+        opt1: 'Gourmet Fish Journey', opt2: 'Prime Meat Experience', opt3: 'Green & Earth', opt4: 'Reinvented Traditions', opt5: 'Signature Luxury Selection',
+        testl: 'Testimonials', testh: 'What our guests remember.',
+        r1: '"An unforgettable evening. Restaurant-level cuisine in the comfort of our villa."', a1: '— Private Guest, Taormina',
+        r2: '"Flawless execution from start to finish. The kitchen was cleaner than before they arrived."', a2: '— Private Guest, Noto',
+        r3: '"The highlight of our Sicilian holiday."', a3: '— Private Guest, Cefalù',
+        contl: 'Contact', conth: 'Private bookings only.',
+        contsub: 'All inquiries handled personally. We do not use booking platforms.',
+        foot: '© 2025 The Brigade · Sicily, Italy · Private dining exclusively',
+        navBrigade: 'The Brigade', navExp: 'Experiences', navOcc: 'Occasions', navQuote: 'Request',
+        ftrBrigade: 'The Brigade', ftrExp: 'Experiences', ftrReq: 'Request',
       },
       it: {
-        kicker: "CENE PRIVATE · SICILIA · VILLE & YACHT",
-        sub: "Alta Cucina Privata in Sicilia",
-        tag: "Esperienze culinarie su misura in ville, yacht e residenze esclusive.",
-        cta: "Richiedi Evento Privato",
-        trustTitle: "Perché The Brigade",
-        t1T: "Ville Private & Yacht", t1D: "Esperienze esclusive in tutta la Sicilia.",
-        t2T: "Ingredienti Stagionali", t2D: "Materie prime locali e menu basati sulla stagione.",
-        t3T: "Servizio Completo", t3D: "Cucina, servizio e riordino totale inclusi.",
-        simTitle: "Richiedi Preventivo Su Misura",
-        lblGuests: "Ospiti presenti",
-        lblExp: "Seleziona Esperienza",
-        chkWine: "Includi Abbinamento Vini",
-        chkYacht: "Servizio in Villa / Yacht",
-        tailored: "Proposta su Misura",
-        simVal: "Ricevi una quotazione personalizzata entro 24 ore.",
-        btnBook: "Invia Richiesta",
-        expTitle: "Esperienze d'Autore",
-        flowTitle: "L'Esperienza",
-        f1: "01 RICHIESTA", f2: "02 DESIGN MENU", f3: "03 EVENTO PRIVATO", f4: "04 RIORDINO TOTALE",
-        testTitle: "Cosa Dicono i Nostri Ospiti",
-        r1: '"Una serata indimenticabile. Cucina di livello ristorante nel comfort della nostra villa."',
-        a1: "— Ospite Privato, Taormina",
-        r2: '"Esecuzione impeccabile dall\'inizio alla fine. La cucina era più pulita di prima che arrivassero."',
-        a2: "— Ospite Privato, Noto",
-        r3: '"Il momento clou della nostra vacanza in Sicilia."',
-        a3: "— Ospite Privato, Cefalù",
-        contTitle: "Solo Prenotazioni Private",
-        opt1: "Gourmet Fish Journey", opt2: "Prime Meat Experience", opt3: "Green & Earth", opt4: "Tradizioni Rivisitate", opt5: "Signature Luxury Selection",
-        m1T: "Gourmet Fish Journey", m1D: "Pesce fresco del Mediterraneo per cene private.",
-        m2T: "Prime Meat Experience", m2D: "Tagli premium, esecuzioni a cottura lenta.",
-        m3T: "Green & Earth", m3D: "Alta cucina vegetariana e stagionale.",
-        m4T: "Tradizioni Rivisitate", m4D: "Identità siciliana, tecniche moderne.",
-        m5T: "Signature Luxury Selection", m5D: "La massima expressione di The Brigade.",
-        waHeader: "Richiesta Privata:"
+        waHeader: 'Richiesta Evento Privato — The Brigade',
+        waGuests: 'Ospiti', waDate: 'Data preferita', waExp: 'Esperienza',
+        waWine: 'Abbinamento vini', waYacht: 'Villa / Yacht',
+        waClosing: 'Vi chiedo di inviarmi una proposta su misura.',
+        kicker: 'CENE PRIVATE · SICILIA · VILLE & YACHT',
+        sub: 'Alta Cucina Privata in Sicilia',
+        tag: 'Esperienze culinarie su misura in ville, yacht e residenze esclusive.',
+        cta: 'Richiedi Evento Privato',
+        t1h: 'Ville & Yacht', t1p: 'Esperienze esclusive in tutta la Sicilia, ovunque scegliate di essere.',
+        t2h: 'Stagionalità', t2p: 'Menu costruiti attorno a ciò che l\'isola offre al meglio di sé.',
+        t3h: 'Servizio Completo', t3p: 'Arrivo, allestimento, cucina, servizio e riordino totale — tutto incluso.',
+        bl: 'The Brigade',
+        bh: 'Una competenza costruita\nnel tempo, a ogni tavola.',
+        bp1: 'Dietro ogni cena che ospitiamo c\'è un team forgiato da anni di cucine professionali — dai menu degustazione intimi agli eventi di lusso su larga scala. La nostra formazione abbraccia la grande tradizione culinaria italiana, con uno sguardo costante su ciò che cresce, nuota e respira in Sicilia.',
+        bq: '"Non ci adattiamo all\'occasione. Costruiamo l\'occasione attorno a ciò che sappiamo fare."',
+        bp2: 'Ogni evento è pianificato ed eseguito con la stessa disciplina che abbiamo portato in ogni cucina professionale — discrezione totale, tempistiche precise e uno standard che non cambia in base al contesto.',
+        expl: 'Esperienze d\'Autore', exph: 'Cinque espressioni.\nUn unico standard.',
+        m1tag: 'Mediterraneo', m1h: 'Gourmet Fish Journey', m1p: 'Il pescato del giorno, elevato — crudo, marinato, cotto sul fuoco.',
+        m2tag: 'Tagli Pregiati', m2h: 'Prime Meat Experience', m2p: 'Razze selezionate, tecnica lenta, precisione a ogni grado.',
+        m3tag: 'Vegetariano', m3h: 'Green & Earth', m3p: 'Un menu sensoriale completo, senza alcun compromesso.',
+        m4tag: 'Identità Siciliana', m4h: 'Tradizioni Rivisitate', m4p: 'Piatti che i nonni riconoscerebbero. Tecniche che non riconoscerebbero.',
+        m5tag: 'Signature · The Brigade', m5h: 'Signature Luxury Selection', m5p: 'Nessun vincolo. Nessuna categoria. La massima espressione di ciò che questo team può offrire.',
+        gall: 'Gallery', galh: 'Ogni dettaglio,\nogni tavola.',
+        occl: 'Occasioni', occh: 'Ogni momento merita\nuna tavola privata.',
+        occ1h: 'Cena Privata', occ1p: 'Una serata intima per famiglia, amici, o una cerchia scelta — interamente vostra.',
+        occ2h: 'Matrimoni & Celebrazioni', occ2p: 'Dalla cena di prova al banchetto nuziale — un\'esperienza culinaria indimenticabile quanto il giorno stesso.',
+        occ3h: 'Eventi Corporate', occ3p: 'Cene con clienti, incontri di team e hospitality esclusiva a un livello che comunica intenzione.',
+        occ4h: 'Compleanni & Anniversari', occ4p: 'Celebra un momento importante con una tavola costruita interamente attorno alla persona al centro.',
+        occ5h: 'Yacht & Ville', occ5p: 'In navigazione lungo la costa siciliana o in residenza privata — la cucina viaggia con voi.',
+        occ6h: 'Residenze Plurigiornaliere', occ6p: 'Soggiorni estesi con un team dedicato per l\'intera durata della vostra permanenza sull\'isola.',
+        flowl: 'Il Processo', flowh: 'Dal primo contatto\nall\'ultimo assaggio.',
+        f1h: 'Richiesta', f1p: 'Ci contattate. Ascoltiamo. Una prima conversazione per capire chi siete e cosa volete dalla serata.',
+        f2h: 'Design del Menu', f2p: 'Proponiamo un menu su misura costruito per il vostro gruppo, la vostra occasione e ciò che offre la Sicilia quella settimana.',
+        f3h: 'Evento Privato', f3p: 'The Brigade arriva, allestisce ed esegue senza frizioni. Il vostro unico ruolo è godere.',
+        f4h: 'Riordino Totale', f4p: 'Lasciamo lo spazio esattamente come lo abbiamo trovato. Spesso più pulito. Sempre con discrezione.',
+        forml: 'Richiesta', formh: 'Raccontateci la vostra serata.',
+        lg: 'Ospiti presenti', ldate: 'Data preferita', lexp: 'Esperienza',
+        wine: 'Abbinamento vini', yacht: 'Servizio in Villa / Yacht',
+        fnote: 'Invieremo una proposta su misura entro 24 ore via WhatsApp.',
+        fbtn: 'Invia Richiesta via WhatsApp',
+        opt1: 'Gourmet Fish Journey', opt2: 'Prime Meat Experience', opt3: 'Green & Earth', opt4: 'Tradizioni Rivisitate', opt5: 'Signature Luxury Selection',
+        testl: 'Testimonianze', testh: 'Cosa ricordano i nostri ospiti.',
+        r1: '"Una serata indimenticabile. Cucina di livello ristorante nel comfort della nostra villa."', a1: '— Ospite Privato, Taormina',
+        r2: '"Esecuzione impeccabile dall\'inizio alla fine. La cucina era più pulita di prima che arrivassero."', a2: '— Ospite Privato, Noto',
+        r3: '"Il momento più bello della nostra vacanza in Sicilia."', a3: '— Ospite Privato, Cefalù',
+        contl: 'Contatti', conth: 'Solo prenotazioni private.',
+        contsub: 'Ogni richiesta gestita personalmente. Non utilizziamo piattaforme di prenotazione.',
+        foot: '© 2025 The Brigade · Sicilia, Italia · Solo cene private',
+        navBrigade: 'The Brigade', navExp: 'Esperienze', navOcc: 'Occasioni', navQuote: 'Richiesta',
+        ftrBrigade: 'The Brigade', ftrExp: 'Esperienze', ftrReq: 'Richiesta',
       }
     };
 
     function changeLanguage() {
-      const lang = document.getElementById("lang-select").value;
+      const lang = document.getElementById('lang-select').value;
       const t = translations[lang];
+      const set = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
 
-      document.getElementById("txt-hero-kicker").innerText = t.kicker;
-      document.getElementById("txt-hero-sub").innerText = t.sub;
-      document.getElementById("txt-hero-tag").innerText = t.tag;
-      document.getElementById("txt-hero-cta").innerText = t.cta;
-      
-      document.getElementById("txt-trust-title").innerText = t.trustTitle;
-      document.getElementById("txt-t1-title").innerText = t.t1T; document.getElementById("txt-t1-desc").innerText = t.t1D;
-      document.getElementById("txt-t2-title").innerText = t.t2T; document.getElementById("txt-t2-desc").innerText = t.t2D;
-      document.getElementById("txt-t3-title").innerText = t.t3T; document.getElementById("txt-t3-desc").innerText = t.t3D;
+      set('txt-kicker', t.kicker); set('txt-sub', t.sub); set('txt-tag', t.tag); set('txt-cta', t.cta);
+      set('txt-t1h', t.t1h); set('txt-t1p', t.t1p);
+      set('txt-t2h', t.t2h); set('txt-t2p', t.t2p);
+      set('txt-t3h', t.t3h); set('txt-t3p', t.t3p);
+      set('txt-bl', t.bl); set('txt-bh', t.bh); set('txt-bp1', t.bp1); set('txt-bq', t.bq); set('txt-bp2', t.bp2);
+      set('txt-expl', t.expl); set('txt-exph', t.exph);
+      set('txt-m1tag', t.m1tag); set('txt-m1h', t.m1h); set('txt-m1p', t.m1p);
+      set('txt-m2tag', t.m2tag); set('txt-m2h', t.m2h); set('txt-m2p', t.m2p);
+      set('txt-m3tag', t.m3tag); set('txt-m3h', t.m3h); set('txt-m3p', t.m3p);
+      set('txt-m4tag', t.m4tag); set('txt-m4h', t.m4h); set('txt-m4p', t.m4p);
+      set('txt-m5tag', t.m5tag); set('txt-m5h', t.m5h); set('txt-m5p', t.m5p);
+      set('txt-gall', t.gall); set('txt-galh', t.galh);
+      set('txt-occl', t.occl); set('txt-occh', t.occh);
+      set('txt-occ1h', t.occ1h); set('txt-occ1p', t.occ1p);
+      set('txt-occ2h', t.occ2h); set('txt-occ2p', t.occ2p);
+      set('txt-occ3h', t.occ3h); set('txt-occ3p', t.occ3p);
+      set('txt-occ4h', t.occ4h); set('txt-occ4p', t.occ4p);
+      set('txt-occ5h', t.occ5h); set('txt-occ5p', t.occ5p);
+      set('txt-occ6h', t.occ6h); set('txt-occ6p', t.occ6p);
+      set('txt-flowl', t.flowl); set('txt-flowh', t.flowh);
+      set('txt-f1h', t.f1h); set('txt-f1p', t.f1p);
+      set('txt-f2h', t.f2h); set('txt-f2p', t.f2p);
+      set('txt-f3h', t.f3h); set('txt-f3p', t.f3p);
+      set('txt-f4h', t.f4h); set('txt-f4p', t.f4p);
+      set('txt-forml', t.forml); set('txt-formh', t.formh);
+      set('txt-lg', t.lg); set('txt-ldate', t.ldate); set('txt-lexp', t.lexp);
+      set('txt-wine', t.wine); set('txt-yacht', t.yacht);
+      set('txt-fnote', t.fnote); set('btn-send', t.fbtn);
+      set('opt1', t.opt1); set('opt2', t.opt2); set('opt3', t.opt3); set('opt4', t.opt4); set('opt5', t.opt5);
+      set('txt-testl', t.testl); set('txt-testh', t.testh);
+      set('txt-r1', t.r1); set('txt-a1', t.a1);
+      set('txt-r2', t.r2); set('txt-a2', t.a2);
+      set('txt-r3', t.r3); set('txt-a3', t.a3);
+      set('txt-contl', t.contl); set('txt-conth', t.conth); set('txt-contsub', t.contsub);
+      set('txt-foot', t.foot);
+      set('nav-brigade', t.navBrigade); set('nav-exp', t.navExp); set('nav-occ', t.navOcc); set('nav-quote', t.navQuote);
+      set('ftr-brigade', t.ftrBrigade); set('ftr-exp', t.ftrExp); set('ftr-req', t.ftrReq);
 
-      document.getElementById("txt-sim-title").innerText = t.simTitle;
-      document.getElementById("txt-label-guests").innerText = t.lblGuests;
-      document.getElementById("txt-label-experience").innerText = t.lblExp;
-      document.getElementById("txt-chk-wine").innerText = t.chkWine;
-      document.getElementById("txt-chk-yacht").innerText = t.chkYacht;
-      document.getElementById("txt-tailored").innerText = t.tailored;
-      document.getElementById("txt-sim-value-label").innerText = t.simVal;
-      document.getElementById("book").innerText = t.btnBook;
-
-      document.getElementById("txt-exp-title").innerText = t.expTitle;
-      document.getElementById("txt-flow-title").innerText = t.flowTitle;
-      document.getElementById("txt-f1").innerText = t.f1;
-      document.getElementById("txt-f2").innerText = t.f2;
-      document.getElementById("txt-f3").innerText = t.f3;
-      document.getElementById("txt-f4").innerText = t.f4;
-
-      document.getElementById("txt-test-title").innerText = t.testTitle;
-      document.getElementById("txt-r1").innerText = t.r1; document.getElementById("txt-a1").innerText = t.a1;
-      document.getElementById("txt-r2").innerText = t.r2; document.getElementById("txt-a2").innerText = t.a2;
-      document.getElementById("txt-r3").innerText = t.r3; document.getElementById("txt-a3").innerText = t.a3;
-
-      document.getElementById("txt-contact-title").innerText = t.contTitle;
-
-      document.getElementById("opt-m1").innerText = t.opt1;
-      document.getElementById("opt-m2").innerText = t.opt2;
-      document.getElementById("opt-m3").innerText = t.opt3;
-      document.getElementById("opt-m4").innerText = t.opt4;
-      document.getElementById("opt-m5").innerText = t.opt5;
-
-      document.getElementById("m1-title").innerText = t.m1T; document.getElementById("m1-desc").innerText = t.m1D;
-      document.getElementById("m2-title").innerText = t.m2T; document.getElementById("m2-desc").innerText = t.m2D;
-      document.getElementById("m3-title").innerText = t.m3T; document.getElementById("m3-desc").innerText = t.m3D;
-      document.getElementById("m4-title").innerText = t.m4T; document.getElementById("m4-desc").innerText = t.m4D;
-      document.getElementById("m5-title").innerText = t.m5T; document.getElementById("m5-desc").innerText = t.m5D;
-
-      calc();
+      buildWALink();
     }
 
-    const guests = document.getElementById("guests");
-    const menu = document.getElementById("menu");
-    const wine = document.getElementById("wine");
-    const yacht = document.getElementById("yacht");
-    const guestValue = document.getElementById("guestValue");
-    const book = document.getElementById("book");
-
-    function calc(){
-      let g = +guests.value;
-      let lang = document.getElementById("lang-select").value;
-
-      guestValue.innerText = g;
-
-      const finalMenuName = menu.options[menu.selectedIndex].text;
-      const headerText = translations[lang].waHeader;
-
-      const msg = `${headerText}\n\nGuests: ${g}\nExperience: ${finalMenuName}\nWine Pairing: ${wine.checked ? "Yes" : "No"}\nVilla / Yacht: ${yacht.checked ? "Yes" : "No"}\n\nPlease send me a tailored proposal.`;
-
-      book.href = "https://wa.me/393208966062?text=" + encodeURIComponent(msg);
-    }
-
-    guests.oninput = calc;
-    menu.onchange = calc;
-    wine.onchange = calc;
-    yacht.onchange = calc;
-
-    calc();
+    buildWALink();
   </script>
 </body>
 </html>
